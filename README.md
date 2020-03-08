@@ -51,5 +51,7 @@ fn main()
   a = OwnArray<i32>([1, 2, 3]) // 1st constructor
   b = OwnArray<i32>(1, 2, 3) // 2nd constructor
   
+  println(a.size(), b.size())
+  
 ```
 A hipotetical new programming language. Syntax and functions are prototypes.
