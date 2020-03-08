@@ -47,7 +47,7 @@ struct OwnArray<T>
   pub constr(seq: Seq<T>)
     self.data = []seq # Transforms from 'Seq<T>' to 'Array<T>'
     
-  pub size()
+  pub fn size()
     return data.size()
     
   pub operator self()
