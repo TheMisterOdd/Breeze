@@ -45,7 +45,7 @@ struct OwnArray<T>
     self.data = data
   
   pub constr(seq: Seq<T>)
-    self.data = []seq // Transforms from 'Seq<T>' to 'Array<T>'
+    self.data = []seq # Transforms from 'Seq<T>' to 'Array<T>'
     
   pub size()
     return data.size()
@@ -55,8 +55,8 @@ struct OwnArray<T>
     
     
 fn main()
-  a = OwnArray<i32>([1, 2, 3]) // 1st constructor
-  b = OwnArray<i32>(1, 2, 3) // 2nd constructor
+  a = OwnArray<i32>([1, 2, 3]) # 1st constructor
+  b = OwnArray<i32>(1, 2, 3)   # 2nd constructor
   
   println(a + ", " + b)
   
