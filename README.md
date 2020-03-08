@@ -15,7 +15,7 @@ leivac main.lei -o
 
 ## Examples
 #### Hello World:
-```rust
+```python
 println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
@@ -25,14 +25,10 @@ fn fibb(n)
     return 1
   else 
     return fibb(n - 1) + fibb(n - 2)
-  ;
-;
 
 fn main()
   for i in range 10
     put(fibb(i))
-  ;
-;
 
 ```
 A hipotetical new programming language. Syntax and functions are prototypes.
