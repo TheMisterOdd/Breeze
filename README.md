@@ -3,6 +3,16 @@
 There are not actual releases, since this language is a prototype. 
 ## Compilation
 
+#### If you want to interpret your code use:
+```
+leiva [input_file] [arguments]
+```
+
+#### If you want to compile and create an executable of your code use:
+```
+leiva [input_file] -o [output_file] [arguments]
+```
+
 ## Examples
 #### Hello World:
 ```rust
