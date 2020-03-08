@@ -31,4 +31,18 @@ fn main()
     print(fibb(i))
 
 ```
+
+#### Object Oriented:
+```
+struct OwnArray<T>
+  priv data: []T
+  priv lenght: u64
+  
+  constr(data: []T)
+    self.data = data
+  
+  constr(seq: Seq<T>)
+    self.data = []seq // Transforms from 'Seq<T>' to 'Array<T>'
+  
+```
 A hipotetical new programming language. Syntax and functions are prototypes.
