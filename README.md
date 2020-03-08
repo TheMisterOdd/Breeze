@@ -36,13 +36,15 @@ fn main()
 ```rust
 struct OwnArray<T>
   priv data: []T
-  priv lenght: u64
   
   constr(data: []T)
     self.data = data
   
   constr(seq: Seq<T>)
     self.data = []seq // Transforms from 'Seq<T>' to 'Array<T>'
+    
+  pub size()
+    return data.size()
   
 ```
 A hipotetical new programming language. Syntax and functions are prototypes.
