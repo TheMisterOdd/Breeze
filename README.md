@@ -1,8 +1,9 @@
 # Leiva, the definitive low-level programming language
-### Download & Installation
+## Download & Installation
 There are not actual releases, since this language is a prototype. 
+## Compilation
 
-### Examples
+## Examples
 #### Hello World:
 ```rust
 println("Hello World!!!")
