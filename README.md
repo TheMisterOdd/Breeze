@@ -47,6 +47,9 @@ struct OwnArray<T>
   pub size()
     return data.size()
     
+  pub operator self
+    return self.data
+    
     
 fn main()
   a = OwnArray<i32>([1, 2, 3]) // 1st constructor
