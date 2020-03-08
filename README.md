@@ -37,10 +37,10 @@ fn main()
 struct OwnArray<T>
   priv data: []T
   
-  constr(data: []T)
+  pub constr(data: []T)
     self.data = data
   
-  constr(seq: Seq<T>)
+  pub constr(seq: Seq<T>)
     self.data = []seq // Transforms from 'Seq<T>' to 'Array<T>'
     
   pub size()
