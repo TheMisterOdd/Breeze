@@ -10,7 +10,7 @@ leiva [input_file] [arguments]
 
 #### If you want to compile and create an executable of your code use:
 ```
-leiva [input_file] -o [output_file] [arguments]
+leivac [input_file] -o [output_file] [arguments]
 ```
 
 ## Examples
