@@ -19,7 +19,7 @@ leivac [input_file] -o [output_file] [arguments]
 println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
-```rust
+```python
 fn fibb(n)
   if n == 0 or n == 1
     return 1
