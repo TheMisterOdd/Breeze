@@ -33,7 +33,7 @@ fn main()
 ```
 
 #### Object Oriented:
-```go
+```ruby
 struct OwnArray<T>
   priv data: []T
   
