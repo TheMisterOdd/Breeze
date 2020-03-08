@@ -5,9 +5,7 @@ There are not actual releases, since this language is a prototype.
 ### Examples
 #### Hello World:
 ```rust
-fn main():
-  println("Hello World!!!");
-
+println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
 ```rust
