@@ -33,7 +33,7 @@ fn main()
 ```
 
 #### Object Oriented:
-```cpp
+```go
 struct OwnArray<T>
   priv data: []T
   
