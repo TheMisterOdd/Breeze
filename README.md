@@ -19,7 +19,7 @@ leivac main.lei -o
 println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
-```cpp
+```go
 fn fibb(n)
   if n == 0 or n == 1
     return 1
