@@ -28,7 +28,7 @@ fn fibb(n)
 
 fn main()
   for i in range 10
-    put(fibb(i))
+    print(fibb(i))
 
 ```
 A hipotetical new programming language. Syntax and functions are prototypes.
