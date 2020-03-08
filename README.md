@@ -15,11 +15,11 @@ leivac main.lei -o
 
 ## Examples
 #### Hello World:
-```
+```c
 println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
-```
+```c
 fn fibb(n)
   if n == 0 or n == 1
     return 1
@@ -34,7 +34,7 @@ fn main()
 ```
 
 #### Object Oriented:
-```
+```c
 struct OwnArray<T>
   priv data: []T
   
