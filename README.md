@@ -27,6 +27,7 @@ fn fibb(n)
     return fibb(n - 1) + fibb(n - 2)
   ;
 ;
+
 fn main()
   for i in range 10
     put(fibb(i))
