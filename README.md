@@ -4,9 +4,9 @@ There are not actual releases, since this language is a prototype.
 
 ### Examples
 #### Hello World:
-```rs
-fn main()
-  println("Hello World!!!");
-;
+```rust
+fn main() {
+  println!("");
+}
 ```
 A hipotetical new programming language. Syntax and functions are prototypes.
