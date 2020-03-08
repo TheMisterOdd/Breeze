@@ -33,7 +33,7 @@ fn main()
 ```
 
 #### Object Oriented:
-```
+```python
 struct OwnArray<T>
   priv data: []T
   priv lenght: u64
