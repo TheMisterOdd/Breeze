@@ -47,7 +47,7 @@ struct OwnArray<T>
   pub size()
     return data.size()
     
-  pub operator self
+  pub operator self()
     return self.data
     
     
