@@ -19,7 +19,7 @@ leivac main.lei -o
 println("Hello World!!!")
 ```
 #### Fibbonacci numbers:
-```go
+```ruby
 fn fibb(n)
   if n == 0 or n == 1
     return 1
