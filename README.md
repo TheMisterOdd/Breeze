@@ -28,7 +28,7 @@ fn fibb(n)
 
 fn main()
   for i in range 10
-    println(fibb(i))
+    if i == 10 print(fibb(i)) else print(fibb(i) + ", ")
 
 
 ```
