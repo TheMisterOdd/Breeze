@@ -7,6 +7,21 @@
 - ```bool``` either ```true``` or ```false```
 - The unit type ```unit```, whose only possible value is an empty value
 
+```julia
+
+array1: Array<> = [1, 2, 3] 
+# or
+array2 = []
+println(array1)
+println(array2)
+
+```
+
+##### Output:
+```
+[1, 2, 3]
+[]
+```
 
 ### Compound Types
 - arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: Array<T, S> = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
@@ -22,8 +37,8 @@ println(array2)
 
 ```
 
-### Output:
+##### Output:
 ```
-'[1, 2, 3]'
-'[]'
+[1, 2, 3]
+[]
 ```
