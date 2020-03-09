@@ -35,13 +35,18 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 - Strings, defined as:
 ```julia
 
-struct string
+struct string impl Copy
   priv iterator<string>
   priv lenght
   priv data: []char
   
   constr(data: []char)
     memcpy(self.data, data, []char)
+  
+  [...]
+  
+  fn Copy(&data: []char) # Because you implemented 'Copy'
+    memcpy(self.data, data, size(data))
   
   [...]
 ```
