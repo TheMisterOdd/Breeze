@@ -10,7 +10,6 @@
 ```julia
 
 x: i8 = 255 # Maximun capacity of an i8   # NOTE: x = 256 will print an error of exceded capacity of an i8
-
 print(x) # i8 variable
 
 # If you put:
