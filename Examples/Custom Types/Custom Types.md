@@ -56,7 +56,7 @@ struct string
   
   [...]
   
-  pub static fn copy(&dest: string, &data: string) # Because you implemented 'Copy'
+  pub static fn copy(&dest: string, &data: string)
     memcpy(dest, data, size(data))
     self.lenght = size(self.data[0]) / size(self.data)
   
