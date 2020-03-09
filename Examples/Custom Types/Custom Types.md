@@ -41,10 +41,10 @@ struct string
   priv lenght
   priv data: []char
   
-  pub constr(data: []char)
+  pub constr(&data: []char)
     memcpy(self.data, data, size(data))
   
-  pub constr(data: string)
+  pub constr(&data: string)
     memcpy(self.data, data, size(data))
   
   [...]
