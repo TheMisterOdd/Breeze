@@ -19,6 +19,10 @@ logic: bool = true # Logical operator
 println(logic)
 
 str = "String" # string variable, it could be also defined 'str: string = "String"' or  'str: []char = "String"'
+println(str)
+
+a = 1.0
+pi = import math, math.pi, delete math
 
 ```
 
