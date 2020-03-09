@@ -15,13 +15,11 @@ x = 256     # Error, exceded capacity of an i8
 # If you put:
 println(i8.size()) # it prints you the size that an specific varible type can support, in this case i8
 
-
 ```
 
 ##### Output:
 ```
-[1, 2, 3]
-[]
+256
 ```
 
 ### Compound Types
