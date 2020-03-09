@@ -13,13 +13,19 @@ x: i8 = 255 # Maximun capacity of an i8
 x = 256     # Error, exceded capacity of an i8
 
 # If you put:
-println(i8.size()) # it prints you the size that an specific varible type can support, in this case i8
+println(i8.size()) # It prints you the size that an specific varible type can support, in this case i8
+
+logic: bool = true # Logical operator
+println(logic)
+
+str = "String" # string variable, it could be also defined 'str: string = "String"' or  'str: []char = "String"'
 
 ```
 
 ##### Output:
 ```
 256
+true
 ```
 
 ### Compound Types
