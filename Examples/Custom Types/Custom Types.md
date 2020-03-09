@@ -41,12 +41,20 @@ struct string
   priv lenght
   priv data: []char
   
-  constr(data: []char)
-    memcpy(self.data, data, []char)
+  pub constr(data: []char)
+    memcpy(self.data, data, size(data))
+  
+  pub constr(data: string)
+    memcpy(self.data, data, size(data))
   
   [...]
   
-  static fn copy(&dest: string, &data: string) # Because you implemented 'Copy'
+  pub const fn lenght()
+    return self.lenght
+  
+  [...]
+  
+  pub static fn copy(&dest: string, &data: string) # Because you implemented 'Copy'
     memcpy(dest, data, size(data))
   
   [...]
