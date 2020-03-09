@@ -34,75 +34,13 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 #### Some ```std``` structs are:
 
 - ##### ```string```:
-```julia
-
-struct string
-  priv data: []char
-  priv s_iterator: iterator<string>
-  priv lenght: u64
-  
-  pub constr(&data: []char)
-    memcpy(self.data, data, size(data))
-    self.lenght = size(self.data[0]) / size(self.data)
-  
-  pub constr(&data: string)
-    memcpy(self.data, data, size(data))
-    self.lenght = size(self.data[0]) / size(self.data)
-    
-  [...]
-  
-  pub const fn lenght()
-    return self.lenght
-  
-  [...]
-  
-  pub static fn copy(&dest: string, &data: string)
-    memcpy(dest, data, size(data))
-    self.lenght = size(self.data[0]) / size(self.data)
-  
-  [...]
-  
-# Example:
-s1 = string("Hello World!!!")
-s2 = string("Bye, Bye!!!")
-
-println(s1)
-println(s2)
-
-string.copy(s1, s2)
-
-println(s1)
-println(s2)
-
-```
-
-##### Output:
-```
-Hello World!!!
-Bye, Bye!!!
-Bye, Bye!!!
-Bye, Bye!!!
-```
-
 - ##### ```malloc``` && ```realloc```  ```alloc```:
-```julia
-struct malloc
-  constr(size: isize)
-    [...]
-    
-struct realloc
-  constr(size: isize)
-    [...]
-
-struct alloc
-  constr(size: isize)
-    [...]
-        
-    
-```
-#### Others are:
 - ##### ```async```
 - ##### ```map<T1, T2>```
 - ##### ```iterator<T>```
 - ##### etc.
+
+
+## ```enum```
+
 
