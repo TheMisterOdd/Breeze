@@ -35,8 +35,8 @@ For more complex structures go [here]()
 
 #### Some ```std``` structs are:
 
-- ##### ```string```:
-- ##### ```malloc```, ```realloc``` & ```alloc```:
+- ##### ```string```
+- ##### ```malloc```, ```realloc``` & ```alloc```
 - ##### ```async```
 - ##### ```map<T1, T2>```
 - ##### ```iterator<T>```
