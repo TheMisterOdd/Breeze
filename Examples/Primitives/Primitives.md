@@ -3,17 +3,16 @@
 - signed integers: ```i8```, ```i16```, ```i32```, ```i64```, ```i128``` and ```isize (pointer size)```
 - unsigned integers: ```u8```, ```u16```, ```u32```, ```u64```, ```u128``` and ```usize (pointer size)```
 - floating point: ```f32```, ```f64```
-- unicode scalar  ```char```(4 bytes each)
+- unicode scalar  ```char``` and ```string```. Also the ```string``` variable is an ```[]char``` (an array of ```char```)
 - ```bool``` either ```true``` or ```false```
 - The unit type ```unit```, whose only possible value is an empty value
 
 ```julia
 
-array1: Array<> = [1, 2, 3] 
-# or
-array2 = []
-println(array1)
-println(array2)
+x: i8 = 255 # Maximun capacity of an i8
+x = 256     # Error, exceded capacity of an i8
+
+
 
 ```
 
