@@ -105,11 +105,3 @@ struct alloc
 - ##### ```iterator<T>```
 - ##### etc.
 
-
-##### Output:
-```
-Hello World!!!
-Bye, Bye!!!
-Bye, Bye!!!
-Bye, Bye!!!
-```
