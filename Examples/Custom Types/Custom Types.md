@@ -32,13 +32,13 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 
 #### Some ```std``` structs are:
 
-##### ```string```
+* ##### ```string```:
 ```julia
 
 struct string
-  priv iterator<string>
-  priv lenght
   priv data: []char
+  priv s_iterator: iterator<string>
+  priv lenght: u64
   
   pub constr(&data: []char)
     memcpy(self.data, data, size(data))
