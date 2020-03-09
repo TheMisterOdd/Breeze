@@ -44,7 +44,7 @@ For more complex structures go [here]()
 
 
 ## ```enum```
-```
+```julia
 enum Types
   TYPE_1
   TYPE_2
