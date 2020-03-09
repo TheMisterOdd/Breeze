@@ -1,5 +1,9 @@
+import "Leiva.Core.PythonImports"
+
 x = 255
 print(x)
+
+print(i8.size) # definition is: 'const size = 2**8'
 
 logic = True
 print(logic)
