@@ -3,7 +3,7 @@
 - signed integers: ```i8```, ```i16```, ```i32```, ```i64```, ```i128``` and ```isize (pointer size)```
 - unsigned integers: ```u8```, ```u16```, ```u32```, ```u64```, ```u128``` and ```usize (pointer size)```
 - floating point: ```f32```, ```f64```
-- unicode scalar  ```char``` and ```string```. Also the ```String``` variable is an ```[]char``` (an array of ```char```)
+- unicode scalar  ```char``` and ```string```. Also the ```string``` variable is an ```[]char``` (an array of ```char```)
 - ```bool``` either ```true``` or ```false```
 - The unit type ```unit```, whose only possible value is an empty value
 
