@@ -11,10 +11,10 @@
 
 x: i8 = 255 # Maximun capacity of an i8   # NOTE: x = 256 will print an error of exceded capacity of an i8
 
+print(x) # i8 variable
+
 # If you put:
 println(i8.size()) # It prints you the size that an specific varible type can support, in this case i8
-
-print(x)
 
 logic: bool = true # Logical operator
 println(logic)
@@ -32,8 +32,8 @@ println(pi)
 
 ##### Output:
 ```
-256
 255
+256
 true
 String
 1.0
