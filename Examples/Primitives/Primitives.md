@@ -28,9 +28,9 @@ println(i8.size()) # it prints you the size that an specific varible type can su
 
 ```julia
 
-array1: []i32 = [1, 2, 3] #if you don't put anything inside '[]', the code will create a dynamic allocated array
+array1: []i32 = [1, 2, 3] # If you don't put anything inside '[]' before the 'i32', the code will create a dynamic allocated array
 # or
-array2 = []
+array2 = [] # Null array
 println(array1)
 println(array2)
 
