@@ -99,6 +99,12 @@ struct alloc
         
     
 ```
+#### Others are:
+* ##### ```async```
+* ##### ```map<T1, T2>```
+* ##### ```iterator<T>```
+Among others
+
 
 ##### Output:
 ```
