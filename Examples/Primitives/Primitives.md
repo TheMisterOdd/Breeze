@@ -23,12 +23,12 @@ println(i8.size()) # it prints you the size that an specific varible type can su
 ```
 
 ### Compound Types
-- arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: Array<T, S> = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
+- arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: [S]T = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
 - lists: ```{1, true, 3.14f}```
 
 ```julia
 
-array1: Array<> = [1, 2, 3] 
+array1: []i32 = [1, 2, 3] #if you don't put anything inside '[]', the code will create a dynamic allocated array
 # or
 array2 = []
 println(array1)
