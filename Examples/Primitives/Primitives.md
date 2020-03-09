@@ -9,18 +9,16 @@
 
 
 ### Compound Types
-- arrays: ```[1, 2, 3]```, also could be defined as ```variable_name: [T, S] = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
+- arrays: ```[1, 2, 3]```, also could be defined as ```Array<T, S> = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
 - lists: ```{1, true, 3.14f}```
 
 ```julia
 
-array1: [i32, 3] = [1, 2, 3] 
+array1: Array<> = [1, 2, 3] 
 # or
 array2 = []
 println(array1)
 println(array2)
-
-empty]
 
 ```
 
