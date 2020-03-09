@@ -22,7 +22,10 @@ str = "String" # string variable, it could be also defined 'str: string = "Strin
 println(str)
 
 a = 1.0
-pi = import math, math.pi, delete math
+println(a)
+
+pi = 3.1415f # The 'f' at the end of the number indicates that the variable is a floating number (f32)
+println(pi)
 
 ```
 
@@ -30,6 +33,9 @@ pi = import math, math.pi, delete math
 ```
 256
 true
+String
+1.0
+3.1415
 ```
 
 ### Compound Types
