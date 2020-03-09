@@ -44,10 +44,10 @@ For more complex structures go [here]()
 
 
 ## ```enum```
-```julia
+```rust
 enum Types
-  TYPE_1
-  TYPE_2
+  TYPE_1,
+  TYPE_2,
   TYPE_3
 
 t: Types = TYPE_1
