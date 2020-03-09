@@ -82,3 +82,28 @@ Bye, Bye!!!
 Bye, Bye!!!
 Bye, Bye!!!
 ```
+
+* ##### ```malloc``` && ```realloc```  ```alloc```:
+```julia
+struct malloc
+  constr(size: isize)
+    [...]
+    
+struct realloc
+  constr(size: isize)
+    [...]
+
+struct alloc
+  constr(size: isize)
+    [...]
+        
+    
+```
+
+##### Output:
+```
+Hello World!!!
+Bye, Bye!!!
+Bye, Bye!!!
+Bye, Bye!!!
+```
