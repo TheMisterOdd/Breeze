@@ -5,6 +5,7 @@
 
 Constants can also be created via the ```const``` and ```static``` keywords.
 
+## ```struct```
 #### Constructors:
 - The structs, can have a [constructor](https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)) or not, for example:
 ```julia
