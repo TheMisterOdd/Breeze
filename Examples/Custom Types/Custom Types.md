@@ -30,7 +30,21 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 
 ```
 
-#### Some ```std::``` structs are:
+#### Some ```std``` structs are:
+
+- Strings, defined as:
+```julia
+
+struct string
+  priv iterator<string>
+  priv lenght
+  priv data: []char
+  
+  constr(data: []char)
+    memcpy(self.data, data, []char)
+  
+  [...]
+```
 
 ##### Output:
 ```
