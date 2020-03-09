@@ -32,7 +32,7 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 
 #### Some ```std``` structs are:
 
-* ##### ```string```:
+- ##### ```string```:
 ```julia
 
 struct string
@@ -83,7 +83,7 @@ Bye, Bye!!!
 Bye, Bye!!!
 ```
 
-* ##### ```malloc``` && ```realloc```  ```alloc```:
+- ##### ```malloc``` && ```realloc```  ```alloc```:
 ```julia
 struct malloc
   constr(size: isize)
