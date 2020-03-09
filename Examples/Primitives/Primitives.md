@@ -15,6 +15,8 @@ x = 256     # Error, exceded capacity of an i8
 # If you put:
 println(i8.size()) # It prints you the size that an specific varible type can support, in this case i8
 
+print(x)
+
 logic: bool = true # Logical operator
 println(logic)
 
@@ -32,6 +34,7 @@ println(pi)
 ##### Output:
 ```
 256
+255
 true
 String
 1.0
