@@ -43,10 +43,12 @@ struct string
   
   pub constr(&data: []char)
     memcpy(self.data, data, size(data))
+    self.lenght = size(self.data[0]) / size(self.data)
   
   pub constr(&data: string)
     memcpy(self.data, data, size(data))
-  
+    self.lenght = size(self.data[0]) / size(self.data)
+    
   [...]
   
   pub const fn lenght()
@@ -56,6 +58,7 @@ struct string
   
   pub static fn copy(&dest: string, &data: string) # Because you implemented 'Copy'
     memcpy(dest, data, size(data))
+    self.lenght = size(self.data[0]) / size(self.data)
   
   [...]
   
