@@ -21,7 +21,7 @@ println(logic)
 str = "String" # string variable, it could be also defined 'str: string = "String"' or  'str: []char = "String"'
 println(str)
 
-a = 1.0
+a = 1.0 # This is an 'f64'
 println(a)
 
 pi = 3.1415f # The 'f' at the end of the number indicates that the variable is a floating number (f32)
