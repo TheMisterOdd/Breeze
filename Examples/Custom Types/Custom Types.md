@@ -31,6 +31,8 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 
 ```
 
+For more complex structures go [here]()
+
 #### Some ```std``` structs are:
 
 - ##### ```string```:
