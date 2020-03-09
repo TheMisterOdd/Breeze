@@ -33,7 +33,6 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 #### Some ```std``` structs are:
 
 ##### ```string```
-- Strings, defined as:
 ```julia
 
 struct string
