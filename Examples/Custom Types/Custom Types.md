@@ -44,5 +44,21 @@ For more complex structures go [here]()
 
 
 ## ```enum```
+```
+enum Types
+  TYPE_1
+  TYPE_2
+  TYPE_3
+
+t: Types = TYPE_1
+println(t)
+
+t = TYPE_2
+println(t)
+
+t = TYPE_3
+println(t)
+
+```
 
 
