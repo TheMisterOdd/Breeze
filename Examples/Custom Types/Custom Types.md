@@ -32,10 +32,11 @@ b = vec3(1, 2) # this is how you create a struct with a constructor
 
 #### Some ```std``` structs are:
 
+##### ```string```
 - Strings, defined as:
 ```julia
 
-struct string impl Copy
+struct string
   priv iterator<string>
   priv lenght
   priv data: []char
@@ -45,14 +46,29 @@ struct string impl Copy
   
   [...]
   
-  fn Copy(&data: []char) # Because you implemented 'Copy'
-    memcpy(self.data, data, size(data))
+  static fn copy(&dest: string, &data: string) # Because you implemented 'Copy'
+    memcpy(dest, data, size(data))
   
   [...]
+  
+# Example:
+s1 = string("Hello World!!!")
+s2 = string("Bye, Bye!!!")
+
+println(s1)
+println(s2)
+
+string.copy(s1, s2)
+
+println(s1)
+println(s2)
+
 ```
 
 ##### Output:
 ```
-[1, 2, 3]
-[]
+Hello World!!!
+Bye, Bye!!!
+Bye, Bye!!!
+Bye, Bye!!!
 ```
