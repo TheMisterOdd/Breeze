@@ -23,7 +23,6 @@ int main(void)
 
 	printf("After 'free()': [*x=%d, *y=%d]\n", *x, *y);
 
-
 	free(y);
 
 	printf("Before 'free()': [*x=%d, *y=%d]\n", *x, *y); // Strange numbers will print out
