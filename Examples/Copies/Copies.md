@@ -18,6 +18,15 @@ print(*y) # Also prints the value of the pointer 'x'
 
 delete y # NOTE: Since 'y' is a reference this will also delete 'x'
 
+print(x)
+print(y)
 
+```
 
+##### Output:
+```
+10
+10
+null
+null
 ```
