@@ -17,6 +17,8 @@ int main(void)
 	printf("After: [a2=%d, b2=%d]\n\n", a2, b2);
 
 	// Pointers copy:
+	
+	// How to NOT copy: 
 	int *x;
 	*x = 10;
 	int *y = x;
