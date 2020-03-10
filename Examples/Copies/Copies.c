@@ -28,6 +28,16 @@ int main(void)
 	free(y);
 
 	printf("Before 'free()': [*x=%d, *y=%d]\n", *x, *y); // Strange numbers will print out
-
+	
+	// How to DO copy:
+	*x = 10;
+	y = x;
+	
+	memcpy(y, x, sizeof(x));
+	printf("After 'free()': [*x=%d, *y=%d]\n", *x, *y);
+	
+	free(y);
+	
+	printf("Before 'free()': [*x=%d, *y=%d]\n", *x, *y); // Strange numbers will print out
 	return 0;
 }
