@@ -69,10 +69,10 @@ fn main()
 ```
 
 ## Leiva by examples:
-| Nº            | Tutorial      |
-| ------------- |:-------------:|
-| 1             | [Hello World!!!](https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World) |
-| 2             | [Primitives](https://github.com/AlKiam/Leiva/tree/master/Examples/Primitives) |
-| 3             | [Custom Types](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) |
+| Nº            | Tutorial      | Complexity      |
+| ------------- |:-------------:||:--------------:|
+| 1             | [Hello World!!!](https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World) | Easy |
+| 2             | [Primitives](https://github.com/AlKiam/Leiva/tree/master/Examples/Primitives) | Easy |
+| 3             | [Custom Types](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) | Easy |
 
 A hipotetical new programming language. Syntax and functions are prototypes.
