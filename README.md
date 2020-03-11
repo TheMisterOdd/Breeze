@@ -76,4 +76,5 @@ fn main()
 | 3             | [Pointers](https://github.com/AlKiam/Leiva/tree/master/Examples/Pointers) | Medium |
 | 4             | [Custom types](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) | Easy |
 
+###### Note:
 A hipotetical new programming language. Syntax and functions are prototypes.
