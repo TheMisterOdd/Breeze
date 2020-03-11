@@ -1,5 +1,5 @@
-# Primitives variables
-### Copy functions:
+# Pointers
+### How to define a pointer?:
 
 ```julia
 a = 10
