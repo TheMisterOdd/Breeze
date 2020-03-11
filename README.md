@@ -69,10 +69,10 @@ fn main()
 ```
 
 ## Leiva by examples:
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Nº            | Tutorial      |
+| ------------- |:-------------:|
+| 1             | (Hello World!!!)[https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World] |
+| 2             | right-aligned |
+| 3             | right-aligned |
 
 A hipotetical new programming language. Syntax and functions are prototypes.
