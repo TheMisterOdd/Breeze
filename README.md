@@ -74,6 +74,6 @@ fn main()
 | 1             | [Hello World!!!](https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World) | Easy |
 | 2             | [Primitives](https://github.com/AlKiam/Leiva/tree/master/Examples/Primitives) | Easy |
 | 3             | [Pointers](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) | Medium |
-| 3             | [Custom Types](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) | Medium |
+| 3             | [Easy](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) | Medium |
 
 A hipotetical new programming language. Syntax and functions are prototypes.
