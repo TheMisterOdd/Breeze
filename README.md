@@ -71,8 +71,8 @@ fn main()
 ## Leiva by examples:
 | Nº            | Tutorial      |
 | ------------- |:-------------:|
-| 1             | (Hello World!!!)[https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World] |
-| 2             | right-aligned |
-| 3             | right-aligned |
+| 1             | [Hello World!!!](https://github.com/AlKiam/Leiva/tree/master/Examples/Hello%20World) |
+| 2             | [Primitives](https://github.com/AlKiam/Leiva/tree/master/Examples/Primitives) |
+| 3             | [Custom Types](https://github.com/AlKiam/Leiva/tree/master/Examples/Custom%20Types) |
 
 A hipotetical new programming language. Syntax and functions are prototypes.
