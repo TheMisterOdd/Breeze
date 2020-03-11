@@ -11,7 +11,7 @@ fn main()
   println(i)  # see the new value of i
 
   p = &j         # point to j
-  *p = *p / 37   # divide j through the pointer
+  *p = *p / 7   # divide j through the pointer
   println(j) # see the new value of j
 ```
 
@@ -19,5 +19,5 @@ fn main()
 ```
 40
 21
-0
+3
 ```
