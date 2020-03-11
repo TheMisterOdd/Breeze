@@ -67,4 +67,12 @@ fn main()
 ```
 [1, 2, 3], [1, 2, 3]
 ```
+
+## Leiva by examples:
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 A hipotetical new programming language. Syntax and functions are prototypes.
