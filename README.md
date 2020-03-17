@@ -47,8 +47,9 @@ struct OwnArray<T>
   pub constr(data: []T)
     self.data = data
   
-  pub constr(seq: Seq<T>)
-    self.data = []seq          # Transforms from 'Seq<T>' to 'Array<T>'
+  pub constr(data: ... T)      # In order to put infinite arguments
+    for val in data
+      self.data[val.index()] = val
     
   pub fn size()
     return data.size()
