@@ -1,4 +1,4 @@
-# Primitives variables
+# Structs and enums
 ### Custom Types
 - ```struct```: used to define a structure
 - ```enum```: used to define an enumeration
