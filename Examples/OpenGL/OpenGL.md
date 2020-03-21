@@ -17,18 +17,30 @@ struct Window
   pub vidMode: GLFWVideoMode*
   
   pub constr(width: i16, height: i16, title: string, fullscreen: bool)
-    @width, @height = width, height
-    @title = title
-    @fullscreen = fullscreen
+    self.width, self.height = width, height
+    self.title = title
+    self.fullscreen = fullscreen
     
     if !glfwInit()
       throw "Error, could not create a GLFW contex"
     
-    @window = glfwCreateWindow(width, height, title, if fullscreen glfwGetPrimaryMonitor() else null, null)
-    if !@window
+    self.window = glfwCreateWindow(width, height, title, if fullscreen glfwGetPrimaryMonitor() else null, null)
+    if !self.window
       throw "Error, cannot not create a GLFW window"
     
-   @vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor())
-   glfwSetWindowPos(self.window, )
+   self.vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor())
+   glfwSetWindowPos(self.window, (self.vidMode.width - self.width) / 2, (self.vidMode.height - self.height) / 2)
+   
+   glfwMakeContextCurrent(self.window)
+   
+   if !gladLoadGL()
+    throw "Error, cannot not create a OpenGL window"
+   
+   println("GLFW " + glfwGetVersionString())
+   println("OpenGL " + glGetString(GL_VERSION))
+   println("GLSL " + glGetString(GL_SHADING_LANGUAGE_VERSION))
+   println(glGetString(GL_VENDOR))
+   println(glGetString(GL_RENDERER))
+   
     
 ```
