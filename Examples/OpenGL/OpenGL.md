@@ -14,21 +14,21 @@ import extern "glad/glad.h"  # something directly from C or C++ and maybe in fur
 struct Window
   pub width: i16, height: i16, title: string, fullscreen: bool
   pub window: GLFWwindow*
+  pub vidMode: GLFWVideoMode*
   
   pub constr(width: i16, height: i16, title: string, fullscreen: bool)
-    self.width = width
-    self.height = height
-    self.title = title
-    self.fullscreen = fullscreen
+    @width, @height = width, height
+    @title = title
+    @fullscreen = fullscreen
     
     if !glfwInit()
       throw "Error, could not create a GLFW contex"
     
-    self.window = glfwCreateWindow(width, height, title, if fullscreen glfwGetPrimaryMonitor() else null, null)
-    if !self.window
+    @window = glfwCreateWindow(width, height, title, if fullscreen glfwGetPrimaryMonitor() else null, null)
+    if !@window
       throw "Error, cannot not create a GLFW window"
     
-    
-    
+   @vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor())
+   glfwSetWindowPos(self.window, )
     
 ```
