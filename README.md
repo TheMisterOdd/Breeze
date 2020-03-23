@@ -5,12 +5,12 @@ There are not actual releases, since this language is a prototype.
 
 #### If you want to interpret your code use:
 ```
-leiva main.lei
+leiva run main.lei
 ```
 
 #### If you want to compile and create an executable of your code use:
 ```
-leivac main.lei -o
+leiva main.lei -o executable
 ```
 
 ## Examples
