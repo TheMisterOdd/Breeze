@@ -15,14 +15,14 @@ leiva build main.lei -o executable
 
 ## Examples
 #### Hello World:
-```
+```julia
 println("Hello World!!!")
 ```
 ```
 Hello World!!!
 ```
 #### Fibbonacci numbers:
-```
+```julia
 fn fibb(n)
   if n == 0 or n == 1
     return 1
@@ -40,7 +40,7 @@ fn main()
 ```
 
 #### Object Oriented:
-```
+```julia
 struct OwnArray<T>
   priv data: []T
   
