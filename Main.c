@@ -49,10 +49,10 @@ int main(int args, char** argv)
 {
     // Check if there are enough arguments:
 	if (args <= 1) 
-    	{
-        	printf("%s: no listed files to interpret or command.\nUse '%s help', for help.\n", argv[0], argv[0]);
-        	return -1;
-    	}
+    {
+        printf("%s: no listed files to interpret or command.\nUse '%s help', for help.\n", argv[0], argv[0]);
+        return -1;
+    }
 	
 	if (args <= 2) 
 	{
@@ -87,38 +87,38 @@ int main(int args, char** argv)
 	}
 
 	// Allocating the returning buffer for interpret:
-    	char* _Buffer = (char*)malloc(sizeof(char) * 512);
-    	if (_Buffer == NULL) 
-    	{
-        	printf("%s: alloc error: could alloc internal variable '_Buffer'.\n", argv[0]);
-        	return -1;
-    	}
-    	strcpy(_Buffer, "leivac");
-    	bool ifExit = false, ifArgs = false;
+    char* _Buffer = (char*)malloc(sizeof(char) * 512);
+    if (_Buffer == NULL) 
+    {
+        printf("%s: alloc error: could alloc internal variable '_Buffer'.\n", argv[0]);
+        return -1;
+    }
+    strcpy(_Buffer, "leivac");
+    bool ifExit = false, ifArgs = false;
 
 	// Getting files:
-    	for (int i = 1; i < args; i++) 
-    	{
-        	// Check if the the extension of a file is '.lei':
-        	int len = strlen(argv[i]);
-        	if (argv[i][len - 4] != '.' || argv[i][len - 3] != 'l' ||
-            		argv[i][len - 2] != 'e' || argv[i][len - 1] != 'i') {
-            		printf("%s: error: Invalid type at given file '%s'. Should use '.lei' extension.\n", argv[0], argv[i]);
-            		ifExit = true; 
+    for (int i = 1; i < args; i++) 
+    {
+        // Check if the the extension of a file is '.lei':
+        int len = strlen(argv[i]);
+        if (argv[i][len - 4] != '.' || argv[i][len - 3] != 'l' ||
+            argv[i][len - 2] != 'e' || argv[i][len - 1] != 'i') {
+            printf("%s: error: Invalid type at given file '%s'. Should use '.lei' extension.\n", argv[0], argv[i]);
+            ifExit = true; 
 		}
 
         	// Cheking if the given file existis:
 		FILE* fp = fopen(argv[i], "rb");
-        	if (fp == NULL) 
-        	{
-            		printf("%s: %s: No such file or directory.\n", argv[0], argv[i]);
-            		ifExit = true;
-        	}
-        	fclose(fp);
+        if (fp == NULL) 
+        {
+            printf("%s: %s: No such file or directory.\n", argv[0], argv[i]);
+            ifExit = true;
+        }
+        fclose(fp);
         
-         	if (!ifExit) 
-            		sprintf_s(_Buffer, sizeof(char) * 512, "%s %s", _Buffer, argv[i]);
-    	}
+        if (!ifExit) 
+            sprintf_s(_Buffer, sizeof(char) * 512, "%s %s", _Buffer, argv[i]);
+    }
 	
 	if (!ifExit) 
 	{
@@ -126,6 +126,6 @@ int main(int args, char** argv)
 		system(_Buffer);
 	}
 	
-    	free(_Buffer);
-    	return ifExit ? -1 : 0;
+    free(_Buffer);
+    return ifExit ? -1 : 0;
 }
