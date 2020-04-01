@@ -1,9 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
+// Utils:
+#include <malloc.h>
 #include <stdbool.h>
 #include <string.h>
 
-#include "dirent.h"
+// IO:
+#include <stdio.h>
+#include <dirent.h>
 
 #define HELP \
 "Leiva is a tool for managing Go source code.\n\n"\
