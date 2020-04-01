@@ -13,7 +13,12 @@ leiva -> parse -> interpretation
 
 **compiler:**
 ```
-leiva -> parse -> translation to c -> gcc -> compilation of the C source
+leiva
+  └ parse
+      └ translation to C
+          └ gcc compiles the C source code
+              └ executable
+   
 ```
 
 ## Compilation
