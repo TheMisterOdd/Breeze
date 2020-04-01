@@ -6,7 +6,7 @@ There are not actual releases, since this language is a prototype.
 Leiva is written in [Go](https://golang.org/) and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). The interpreter and the translater of Leiva is written in Go, then the compilation process takes place in C.
 
 ###### Translater:
-The translater is in charge of converting the Leiva language into C language and then, compile it with gcc. That gives Leiva, the powerful syntax of it and the power an speed of C.
+The translater is in charge of converting the Leiva language into C language and then, compile it with gcc. That gives Leiva the capability of having a powerful syntax and the low-level and speed of C.
 
 ## Compilation
 
