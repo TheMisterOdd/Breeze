@@ -11,6 +11,7 @@ Leiva is written primary in [C](https://es.wikipedia.org/wiki/C_(lenguaje_de_pro
 leiva
   └ parse
       └ interpretation
+          └ output
 ```
 
 **compiler:**
