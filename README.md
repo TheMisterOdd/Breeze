@@ -8,7 +8,9 @@ Leiva is written primary in [C](https://es.wikipedia.org/wiki/C_(lenguaje_de_pro
 ##### How it works?
 **interpreter:**
 ```
-leiva -> parse -> interpretation
+leiva
+  └ parse
+      └ interpretation
 ```
 
 **compiler:**
@@ -18,7 +20,6 @@ leiva
       └ translation to C
           └ gcc compiles the C source code
               └ executable
-   
 ```
 
 ## Compilation
