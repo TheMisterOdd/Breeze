@@ -10,17 +10,17 @@ Leiva is written primary in [C](https://es.wikipedia.org/wiki/C_(lenguaje_de_pro
 ```
 leiva
   └─ parse
-      └─ interpretation
-          └─ output
+       └─ interpretation
+            └─ output
 ```
 
 **compiler:**
 ```
 leiva
   └─ parse
-      └─ translation to C
-          └─ gcc compiles the C source code
-              └─ executable
+       └─ translation to C
+            └─ gcc compiles the C source code
+                 └─ executable
 ```
 
 ## Compilation
