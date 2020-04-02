@@ -3,7 +3,7 @@
 ### How to define a pointer?
 ```julia
 fn main()
-  i = 40, j = 21
+  i, j = 40, 21
 
   p = &i         # point to i
   println(*p) # read i through the pointer
