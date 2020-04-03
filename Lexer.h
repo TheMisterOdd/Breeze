@@ -105,11 +105,11 @@ const char* Token_ToString(Token self)
 	const char* TT_Buffer = TokenType_ToString(self.T);
 	if (self.value != NULL)
 	{
-		sprintf_s(_Buffer, 512, "{%s: %d}", TT_Buffer, (int)self.value);
+		sprintf_s(_Buffer, 512, "%s: %d", TT_Buffer, (int)self.value);
 	}
 	else
 	{
-		sprintf_s(_Buffer, 512, "{%s}", TT_Buffer);
+		sprintf_s(_Buffer, 512, "%s", TT_Buffer);
 	}
 
 	return _Buffer;
@@ -164,24 +164,33 @@ void TokenList_Append(TokenList* self, Token new_val)
 
 Token Token_MakeNumbers(Lexer* self)
 {
+	char* text = (char*)malloc(sizeof(char) * (strlen(self->text) + 1));
+	memcpy(&text, &self->text, sizeof(char*));
+
 	bool dot = false;
 	char* numStr = (char*)malloc(sizeof(char) * 512);
 	strcpy(numStr, "");
 
-	while (*self->text != '\0' || in(*self->text, digits_dot))
+	while (*text != '\0' || in(*text, digits_dot))
 	{
 		if (dot) break;
 
-		if (*self->text == '.')
+		if (*text == '.')
 			dot = true;
 
-		sprintf(numStr, "%s%c", numStr, *self->text);
-		Lexer_Advance(self);
+		sprintf(numStr, "%s%c", numStr, *text);
+		*text++;
 	}
 
 	return dot ? mk_Token(FLOAT, atoi(numStr)) : mk_Token(INT, atoi(numStr));
 }
 
+
+typedef struct
+{
+	TokenList list;
+	Error err;
+} Pair;
 
 Pair Lexer_MakeTokens(Lexer* self)
 {
@@ -189,21 +198,50 @@ Pair Lexer_MakeTokens(Lexer* self)
 
 	while (*self->text != '\0')
 	{
-		if (*self->text == ' ' || *self->text == '\t')
-			continue;
-		else if (*self->text == '+')
+		if (*self->text == ' ' || *self->text == '\t') 
+			*self->text++;
+		else if (in(*self->text, digits))
+		{
+			TokenList_Append(&tokens, Token_MakeNumbers(self));
+			self->text++;
+		}
+		else if (*self->text == '+') 
+		{
 			TokenList_Append(&tokens, mk_Token(PLUS, NULL));
-		else if (*self->text == '-')
+			*self->text++;
+		}
+		else if (*self->text == '-') 
+		{
 			TokenList_Append(&tokens, mk_Token(MINUS, NULL));
-		else if (*self->text == '*')
+			*self->text++;
+		}
+		else if (*self->text == '*') 
+		{
 			TokenList_Append(&tokens, mk_Token(MUL, NULL));
-		else if (*self->text == '/')
+			*self->text++;
+		}
+		else if (*self->text == '/') 
+		{
 			TokenList_Append(&tokens, mk_Token(DIV, NULL));
-
-		*self->text++;
+			*self->text++;
+		}
+		else if (*self->text == '(')
+		{
+			TokenList_Append(&tokens, mk_Token(LPAREN, NULL));
+			*self->text++;
+		}
+		else if (*self->text == ')')
+		{
+			TokenList_Append(&tokens, mk_Token(RPAREN, NULL));
+			*self->text++;
+		}
+		else 
+		{
+			return (Pair) { mk_TokenList(), mk_IllegalCharacterError(&*self->text++) };
+		}
 	}
-	puts(TokenList_ToString(tokens));
-	return (Pair) { &tokens, NULL };
+
+	return (Pair) { tokens, NULL };
 }
 
 /*

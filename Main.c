@@ -60,8 +60,10 @@ int main(int args, char** argv)
 		printf("/> ");
 		char* _Buffer = input();
 		Pair result = run(_Buffer);
-		TokenList* ls = result.data1;
-		Error* err = result.data2;
+		puts(TokenList_ToString(result.list));
+		if (result.err.error != NULL)
+			puts(Error_ToString(result.err));
+
 
 		free(_Buffer);
 	}

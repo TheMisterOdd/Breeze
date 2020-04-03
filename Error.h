@@ -17,7 +17,7 @@ typedef struct
 const char* Error_ToString(Error self)
 {
 	char* _Buffer = (char*)malloc(sizeof(char) * 512);
-	sprintf_s(_Buffer, 512, "%s: %s.", self.error, self.details);
+	sprintf_s(_Buffer, 512, "%s: '%s'.", self.error, self.details);
 	return _Buffer;
 }
 
