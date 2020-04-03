@@ -57,8 +57,12 @@ int main(int args, char** argv)
 	
 	while (true) 
 	{
+		printf("/> ");
 		char* _Buffer = input();
-		puts(_Buffer);
+		Pair result = run(_Buffer);
+		TokenList* ls = result.data1;
+		Error* err = result.data2;
+
 		free(_Buffer);
 	}
 	

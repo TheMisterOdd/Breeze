@@ -1,8 +1,11 @@
 #pragma once
 
+#include <stdio.h>
+
 typedef struct
 {
-	void *Data1, *Data2;
+	void* data1;
+	void* data2;
 } Pair;
 
 #define panic(_Buffer, ...) fprintf(stderr, _Buffer)
