@@ -11,11 +11,12 @@
 #include "Utils.h"
 #include "Error.h"
 
-/*
-	TOKENS:
-*/
+////////////////////////////////////
+//
+//	TOKENS:
+//
+////////////////////////////////////
 
-const char* digits = "0123456789";
 const char* digits_dot = "0123456789.";
 
 bool in(char c, const char* arr)
@@ -50,33 +51,10 @@ typedef struct
 typedef struct
 {
 	Token* Data;
-	int __bytes;
+	int size;
 } TokenList;
 
 #define mk_TokenList() ((TokenList) { NULL, -1 })
-
-const char* Token_ToString(Token);
-
-const char* TokenList_ToString(TokenList self) 
-{
-	char* _Buffer = (char*)malloc(sizeof(char*) * 512);
-	strcpy(_Buffer, "[");
-
-	for (int i = 0; i < self.__bytes + 1; i++) 
-	{
-		if (i == self.__bytes) 
-		{
-			sprintf(_Buffer, "%s%s", _Buffer, Token_ToString(self.Data[i]));
-		}
-		else 
-		{
-			sprintf(_Buffer, "%s%s, ", _Buffer, Token_ToString(self.Data[i]));
-		}
-	}
-
-	sprintf(_Buffer, "%s]", _Buffer);
-	return _Buffer;
-}
 
 const char* TokenType_ToString(enum TokenType T)
 {
@@ -84,13 +62,13 @@ const char* TokenType_ToString(enum TokenType T)
 	{
 	case INT: return "INT";
 	case FLOAT: return "FLOAT";
-	case PLUS: return "+";
-	case MINUS: return "-";
-	case MUL: return "*";
-	case DIV: return "/";
-	case LPAREN: return "(";
-	case RPAREN: return ")";
-	default: return "nil";
+	case PLUS: return "PLUS";
+	case MINUS: return "MINUS";
+	case MUL: return "MUL";
+	case DIV: return "DIV";
+	case LPAREN: return "LPAREN";
+	case RPAREN: return "RPAREN";
+	default: return "null";
 	}
 }
 
@@ -105,7 +83,16 @@ const char* Token_ToString(Token self)
 	const char* TT_Buffer = TokenType_ToString(self.T);
 	if (self.value != NULL)
 	{
-		sprintf_s(_Buffer, 512, "%s: %d", TT_Buffer, (int)self.value);
+		if (self.T == INT) 
+		{
+			int i = *((int*)self.value);
+			sprintf_s(_Buffer, 512, "%s: %ld", TT_Buffer, i);
+		}
+		else if(self.T == FLOAT) 
+		{
+			float f = *((float*)self.value);
+			sprintf_s(_Buffer, 512, "%s: %f", TT_Buffer, f);
+		}
 	}
 	else
 	{
@@ -115,25 +102,56 @@ const char* Token_ToString(Token self)
 	return _Buffer;
 }
 
+const char* TokenList_ToString(TokenList self)
+{
+	char* _Buffer = (char*)malloc(sizeof(char*) * 512);
+	strcpy(_Buffer, "[");
+
+	for (int i = 0; i < self.size + 1; i++)
+	{
+		if (i == self.size)
+		{
+			sprintf(_Buffer, "%s%s", _Buffer, Token_ToString(self.Data[i]));
+		}
+		else
+		{
+			sprintf(_Buffer, "%s%s, ", _Buffer, Token_ToString(self.Data[i]));
+		}
+	}
+
+	sprintf(_Buffer, "%s]", _Buffer);
+	return _Buffer;
+}
+
+void Token_Free(Token* self) 
+{
+	free(self->value);
+}
+
+void TokenList_Free(TokenList* self) 
+{
+	Token_Free(self->Data);
+	self->size = 0;
+}
+
 /*
 	LEXER
 */
 
+
 typedef struct
 {
 	char* text;
-	int pos;
+	Position pos;
 } Lexer;
 
-void Lexer_Advance(Lexer* self)
+void Lexer_Advance(Lexer* self) 
 {
-	self->pos++;
-	if (self->pos != 0)
-		*self->text++;
-
+	self->text++;
+	Position_Advance(&self->pos, *self->text);
 }
 
-Lexer mk_Lexer(const char* text)
+Lexer mk_Lexer(const char* filename, const char* text)
 {
 	Lexer self;
 	self.text = (char*)malloc(sizeof(char) * 512);
@@ -142,54 +160,62 @@ Lexer mk_Lexer(const char* text)
 		panic("[Error]: Cannot alloc internal variable 'self.text' in Lexer.class().");
 		return self;
 	}
-	strcpy_s(self.text, 512, text);
-	self.pos = -1;
-	Lexer_Advance(&self);
+	strcpy(self.text, text);
+	self.pos = mk_Position(-1, 0, -1, filename, text);
 
 	return self;
 }
 
-#define TokenList_GetLenght(self) (self.__bytes + 1)
-
 void TokenList_Append(TokenList* self, Token new_val)
 {
-	++self->__bytes;
-	if (self->__bytes == -1 && self->Data == NULL)
-		self->Data = (Token*)malloc(sizeof(Token) * (self->__bytes + 1));
+	++self->size;
+	if (self->size == -1 && self->Data == NULL)
+		self->Data = (Token*)malloc(sizeof(Token) * (self->size + 1));
 	else
-		self->Data = (Token*)realloc(self->Data, sizeof(Token) * (self->__bytes + 1));
+		self->Data = (Token*)realloc(self->Data, sizeof(Token) * (self->size + 1));
 
-	self->Data[self->__bytes] = new_val;
+	self->Data[self->size] = new_val;
 }
 
-Token Token_MakeNumbers(Lexer* self)
+Token Lexer_MakeNumbers(Lexer* self)
 {
-	char* text = (char*)malloc(sizeof(char) * (strlen(self->text) + 1));
-	memcpy(&text, &self->text, sizeof(char*));
-
 	bool dot = false;
-	char* numStr = (char*)malloc(sizeof(char) * 512);
-	strcpy(numStr, "");
+	char _Str[512] = "";
 
-	while (*text != '\0' || in(*text, digits_dot))
+	while (*self->text != '\0' && in(*self->text, digits_dot))
 	{
-		if (dot) break;
-
-		if (*text == '.')
+		if (*self->text == '.') 
+		{
+			if (dot) break;
 			dot = true;
-
-		sprintf(numStr, "%s%c", numStr, *text);
-		*text++;
+			sprintf(_Str, "%s.", _Str);
+		}
+		else 
+		{
+			sprintf(_Str, "%s%c", _Str, *self->text);
+		}
+		
+		Lexer_Advance(self);
 	}
 
-	return dot ? mk_Token(FLOAT, atoi(numStr)) : mk_Token(INT, atoi(numStr));
+	if (dot) 
+	{
+		float* f = (float*)malloc(sizeof(float));
+		*f = (float)atof(_Str);
+		return mk_Token(FLOAT, f);
+	}
+	else
+	{
+		int* i = (int*)malloc(sizeof(int));
+		*i = atoi(_Str);
+		return mk_Token(INT, i);
+	}
 }
-
 
 typedef struct
 {
 	TokenList list;
-	Error err;
+	Error error;
 } Pair;
 
 Pair Lexer_MakeTokens(Lexer* self)
@@ -199,58 +225,66 @@ Pair Lexer_MakeTokens(Lexer* self)
 	while (*self->text != '\0')
 	{
 		if (*self->text == ' ' || *self->text == '\t') 
-			*self->text++;
-		else if (in(*self->text, digits))
-		{
-			TokenList_Append(&tokens, Token_MakeNumbers(self));
-			self->text++;
-		}
+			Lexer_Advance(self);
+		else if (in(*self->text, digits_dot))
+			TokenList_Append(&tokens, Lexer_MakeNumbers(self));
+
 		else if (*self->text == '+') 
 		{
 			TokenList_Append(&tokens, mk_Token(PLUS, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else if (*self->text == '-') 
 		{
 			TokenList_Append(&tokens, mk_Token(MINUS, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else if (*self->text == '*') 
 		{
 			TokenList_Append(&tokens, mk_Token(MUL, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else if (*self->text == '/') 
 		{
 			TokenList_Append(&tokens, mk_Token(DIV, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else if (*self->text == '(')
 		{
 			TokenList_Append(&tokens, mk_Token(LPAREN, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else if (*self->text == ')')
 		{
 			TokenList_Append(&tokens, mk_Token(RPAREN, NULL));
-			*self->text++;
+			Lexer_Advance(self);
 		}
 		else 
 		{
-			return (Pair) { mk_TokenList(), mk_IllegalCharacterError(&*self->text++) };
+			Position p = Position_Copy(self->pos);
+			char* c = &*self->text;
+
+			Lexer_Advance(self);
+			return (Pair) { mk_TokenList(), mk_IllegalCharacterError(p, self->pos, c) };
 		}
 	}
 
 	return (Pair) { tokens, NULL };
 }
 
+void Pair_Free(Pair* self) 
+{
+	TokenList_Free(&self->list);
+	Error_Free(&self->error);
+}
+
 /*
 	RUNTIME:
 */
 
-Pair run(const char* text)
+Pair run(const char* filename, const char* text)
 {
-	Lexer lexer = mk_Lexer(text);
+	Lexer lexer = mk_Lexer(filename, text);
 
 	return Lexer_MakeTokens(&lexer);
 }

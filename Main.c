@@ -1,5 +1,6 @@
 #include "Lexer.h"
 
+// Loads from a file:
 char* bytes_load(const char* _Src)
 {
 	char* _Buffer = NULL;
@@ -53,22 +54,27 @@ char* input()
 
 int main(int args, char** argv)
 {
-	clock_t start = clock();
-	
-	while (true) 
+	clock_t begin = clock();
+
+	while (true)
 	{
 		printf("/> ");
 		char* _Buffer = input();
-		Pair result = run(_Buffer);
-		puts(TokenList_ToString(result.list));
-		if (result.err.error != NULL)
-			puts(Error_ToString(result.err));
+		Pair result = run("<stdin>", _Buffer);
 
+		if (result.error.error != NULL)
+			puts(Error_ToString(result.error));
+		else
+			puts(TokenList_ToString(result.list));
 
+		puts("");
 		free(_Buffer);
 	}
-	
-	printf("%s: execution finished. Total time: %.2lf", argv[0], (float)((clock() - start) / CLOCKS_PER_SEC));
+
+	clock_t end = clock();
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+	printf("%s: execution finished. Total time: %.2lf", argv[0], time_spent);
 	getchar();
 	return 0;
 }
