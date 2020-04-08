@@ -11,12 +11,12 @@ Constants can also be created via the ```const``` and ```static``` keywords.
 ```julia
 
 struct vec3_: # without constructor
-  x: f32
-  y: f32
+  pub x: f32
+  pub y: f32
   
 struct vec3: # with constructor
-  x: f32
-  y: f32
+  pub x: f32
+  pub y: f32
   
   constr(x, y): # this is how the constructor is defined, is like a normal function, but it will called once you create an struct (if it has one)
     self.x = x # this will save the values you put in the correspondant variables
