@@ -53,7 +53,7 @@ fn fibb(n)
 
 fn main()
   for i in range 10
-    if i == 10 print(fibb(i)) else print(fibb(i) + ", ")
+    print(fibb(i)) if i == 9  else print(fibb(i) + ", ")
 
 
 ```
