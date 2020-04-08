@@ -97,8 +97,8 @@ struct OwnArray<T>
     self.data = data
   
   pub constr(data: ... T)      # In order to put infinite arguments
-    for val in data
-      *(self.data++) = val
+    for index, value in data
+      self.data[index] = value
     
   pub fn size()
     return data.size()
