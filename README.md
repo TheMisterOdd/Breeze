@@ -61,6 +61,33 @@ fn main()
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 ```
 
+#### Double return:
+```julia
+fn swap(*a, *b)
+  a, b = b, a
+
+fn pair()
+  return [], "Here I return an array to you."
+
+a, b = 10, 6
+
+println(a + ", " + b) # Before
+swap(&a, &b)
+println(a + ", " + b) # After
+println()
+
+arr, str = pair()
+println(arr)
+println(str)
+```
+```
+10, 6
+6, 10
+
+[]
+Here I return an array to you.
+```
+
 #### Object Oriented:
 ```julia
 struct OwnArray<T>
