@@ -45,14 +45,14 @@ Hello World!!!
 ```
 #### Fibbonacci numbers:
 ```julia
-fn fibb(n)
-  if n == 0 or n == 1
+fn fibb(n):
+  if n == 0 or n == 1:
     return 1
-  else 
+  else:
     return fibb(n - 1) + fibb(n - 2)
 
-fn main()
-  for i in range 10
+fn main():
+  for i in range 10:
     print(fibb(i)) if i == 9  else print(fibb(i) + ", ")
 
 
@@ -63,10 +63,10 @@ fn main()
 
 #### Double return:
 ```julia
-fn swap(*a, *b)
+fn swap(*a, *b):
   a, b = b, a
 
-fn pair()
+fn pair():
   return [], "Here I return an array to you."
 
 a, b = 10, 6
@@ -93,21 +93,21 @@ Here I return an array to you.
 struct OwnArray<T>
   priv data: []T
   
-  pub constr(data: []T)
+  pub constr(data: []T):
     self.data = data
   
-  pub constr(data: ... T)      # In order to put infinite arguments
+  pub constr(data: ... T):      # In order to put infinite arguments
     for index, value in data
       self.data[index] = value
     
-  pub fn size()
+  pub fn size():
     return data.size()
     
-  pub operator self()
+  pub operator self():
     return self.data
     
     
-fn main()
+fn main():
   a = OwnArray<i32>([1, 2, 3]) # 1st constructor
   b = OwnArray<i32>(1, 2, 3)   # 2nd constructor
   
