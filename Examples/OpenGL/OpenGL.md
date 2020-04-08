@@ -12,13 +12,12 @@ import extern "glfw/glfw3.h" # The 'extern' keyword indicates that we are import
 import extern "glad/glad.h"  # something directly from C or C++ and maybe in further updates from other languages
 
 struct Window
-  pub width: i16, height: i16, title: string, fullscreen: bool
+  pub width: i16, height: i16, fullscreen: bool
   pub window: GLFWwindow*
   pub vidMode: GLFWVideoMode*
   
   pub constr(width: i16, height: i16, title: string, fullscreen: bool)
     self.width, self.height = width, height
-    self.title = title
     self.fullscreen = fullscreen
     
     if !glfwInit()
