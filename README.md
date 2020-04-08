@@ -90,7 +90,7 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```julia
-struct OwnArray<T>
+struct OwnArray<T>:
   priv data: []T
   
   pub constr(data: []T):
