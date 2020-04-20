@@ -45,16 +45,20 @@ Hello World!!!
 ```
 #### Fibbonacci numbers:
 ```julia
-fn fibb(n):
-  if n == 0 or n == 1:
+fn fibb(n)
+{
+  if n == 0 or n == 1 
     return 1
-  else:
+  else
     return fibb(n - 1) + fibb(n - 2)
+}
+  
 
-fn main():
-  for i in range 10:
+fn main() 
+{
+  for i in range 10
     print(fibb(i)) if i == 9  else print(fibb(i) + ", ")
-
+}
 
 ```
 ```
@@ -63,11 +67,16 @@ fn main():
 
 #### Double return:
 ```julia
-fn swap(*a, *b):
-  a, b = b, a
+fn swap(*a, *b)
+{
+  *a, *b = *b, *a
+}
+  
 
-fn pair():
+fn pair() 
+{
   return [], "Here I return an array to you."
+}
 
 a, b = 10, 6
 
