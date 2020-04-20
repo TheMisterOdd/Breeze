@@ -18,7 +18,7 @@ bool in(char c, const char* arr)
 	return false;
 }
 
-#define NIL 0
+#define NULL_TOK 0
 #define INT 1
 #define FLOAT 2
 #define PLUS 3

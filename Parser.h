@@ -80,7 +80,7 @@ NumberNode Parser_GetFactor(Parser* self)
 		Parser_Advance(self);
 		return (NumberNode){ token };
 	}
-	return (NumberNode){ (Token) { NIL, NULL } };
+	return (NumberNode){ (Token) { NULL_TOK, NULL } };
 }
 
 BinOpNode Parser_GetTerm(Parser* self)
