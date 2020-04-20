@@ -49,32 +49,39 @@ char* input()
 			_Buffer[i] = '\0';
 	}
 
+	if (!strcmp(_Buffer, "exit()")) 
+	{
+		free(_Buffer);
+		_Buffer = NULL;
+		exit(0);
+	} 
+	else if (!strcmp(_Buffer, "exit"))
+	{
+		panic("Use exit() or Ctrl-C to exit\n\n");
+		free(_Buffer);
+		_Buffer = NULL;
+	}
+
 	return _Buffer;
 }
 
 int main(int args, char** argv)
 {
-	clock_t begin = clock();
+	char* _Buffer = NULL;
 
-	while (true)
+	while (1)
 	{
 		printf("/> ");
 		char* _Buffer = input();
-		Pair result = run("<stdin>", _Buffer);
+		if (_Buffer == NULL)
+			continue;
 
-		if (result.error.error != NULL)
-			puts(Error_ToString(result.error));
-		else
-			puts(TokenList_ToString(result.list));
-
+		run("<stdin>", _Buffer);
+		
 		puts("");
 		free(_Buffer);
 	}
 
-	clock_t end = clock();
-	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
-	printf("%s: execution finished. Total time: %.2lf", argv[0], time_spent);
-	getchar();
 	return 0;
 }

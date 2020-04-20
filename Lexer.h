@@ -1,143 +1,21 @@
 #pragma once
 
-#define _CRT_SECURE_NO_WARNINGS
-
-#include <time.h>
 #include <stdbool.h>
 #include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "Utils.h"
+#include "Token.h"
 #include "Error.h"
+#include "Parser.h"
 
-////////////////////////////////////
-//
-//	TOKENS:
-//
-////////////////////////////////////
 
 const char* digits_dot = "0123456789.";
 
-bool in(char c, const char* arr)
-{
-	for (int i = 0; i < (int)strlen(arr); i++)
-		if (c == arr[i])
-			return true;
-
-	return false;
-}
-
-enum TokenType
-{
-	INT,
-	FLOAT,
-	PLUS,
-	MINUS,
-	MUL,
-	DIV,
-	LPAREN,
-	RPAREN
-};
-
-typedef struct
-{
-	enum TokenType T;
-	void* value;
-} Token;
-
-#define mk_Token(T, value) ((Token) { T, (void*)value })
-
-typedef struct
-{
-	Token* Data;
-	int size;
-} TokenList;
-
-#define mk_TokenList() ((TokenList) { NULL, -1 })
-
-const char* TokenType_ToString(enum TokenType T)
-{
-	switch (T)
-	{
-	case INT: return "INT";
-	case FLOAT: return "FLOAT";
-	case PLUS: return "PLUS";
-	case MINUS: return "MINUS";
-	case MUL: return "MUL";
-	case DIV: return "DIV";
-	case LPAREN: return "LPAREN";
-	case RPAREN: return "RPAREN";
-	default: return "null";
-	}
-}
-
-const char* Token_ToString(Token self)
-{
-	char* _Buffer = (char*)malloc(sizeof(char) * 512);
-	if (_Buffer == NULL)
-	{
-		return NULL;
-	}
-
-	const char* TT_Buffer = TokenType_ToString(self.T);
-	if (self.value != NULL)
-	{
-		if (self.T == INT) 
-		{
-			int i = *((int*)self.value);
-			sprintf_s(_Buffer, 512, "%s: %ld", TT_Buffer, i);
-		}
-		else if(self.T == FLOAT) 
-		{
-			float f = *((float*)self.value);
-			sprintf_s(_Buffer, 512, "%s: %f", TT_Buffer, f);
-		}
-	}
-	else
-	{
-		sprintf_s(_Buffer, 512, "%s", TT_Buffer);
-	}
-
-	return _Buffer;
-}
-
-const char* TokenList_ToString(TokenList self)
-{
-	char* _Buffer = (char*)malloc(sizeof(char*) * 512);
-	strcpy(_Buffer, "[");
-
-	for (int i = 0; i < self.size + 1; i++)
-	{
-		if (i == self.size)
-		{
-			sprintf(_Buffer, "%s%s", _Buffer, Token_ToString(self.Data[i]));
-		}
-		else
-		{
-			sprintf(_Buffer, "%s%s, ", _Buffer, Token_ToString(self.Data[i]));
-		}
-	}
-
-	sprintf(_Buffer, "%s]", _Buffer);
-	return _Buffer;
-}
-
-void Token_Free(Token* self) 
-{
-	free(self->value);
-}
-
-void TokenList_Free(TokenList* self) 
-{
-	Token_Free(self->Data);
-	self->size = 0;
-}
-
-/*
-	LEXER
-*/
-
+////////////////////////////////////
+//	LEXER:
+///////////////////////////////////
 
 typedef struct
 {
@@ -160,7 +38,7 @@ Lexer mk_Lexer(const char* filename, const char* text)
 		panic("[Error]: Cannot alloc internal variable 'self.text' in Lexer.class().");
 		return self;
 	}
-	strcpy(self.text, text);
+	strcpy_s(self.text, strlen(text) + 1, text);
 	self.pos = mk_Position(-1, 0, -1, filename, text);
 
 	return self;
@@ -188,11 +66,11 @@ Token Lexer_MakeNumbers(Lexer* self)
 		{
 			if (dot) break;
 			dot = true;
-			sprintf(_Str, "%s.", _Str);
+			sprintf_s(_Str, 512, "%s.", _Str);
 		}
 		else 
 		{
-			sprintf(_Str, "%s%c", _Str, *self->text);
+			sprintf_s(_Str, 512, "%s%c", _Str, *self->text);
 		}
 		
 		Lexer_Advance(self);
@@ -212,9 +90,13 @@ Token Lexer_MakeNumbers(Lexer* self)
 	}
 }
 
+////////////////////////////////////
+//	Pair Util:
+////////////////////////////////////
+
 typedef struct
 {
-	TokenList list;
+	void* data;
 	Error error;
 } Pair;
 
@@ -265,26 +147,39 @@ Pair Lexer_MakeTokens(Lexer* self)
 			char* c = &*self->text;
 
 			Lexer_Advance(self);
-			return (Pair) { mk_TokenList(), mk_IllegalCharacterError(p, self->pos, c) };
+			return (Pair) { &mk_TokenList(), mk_IllegalCharacterError(p, self->pos, c) };
 		}
 	}
 
-	return (Pair) { tokens, NULL };
+	return (Pair) { &tokens, mk_Error(-1, -1, NULL, NULL) };
 }
 
 void Pair_Free(Pair* self) 
 {
-	TokenList_Free(&self->list);
+	TokenList_Free(((TokenList*)self->data));
 	Error_Free(&self->error);
 }
 
-/*
-	RUNTIME:
-*/
 
-Pair run(const char* filename, const char* text)
+///////////////////////////////////
+//	RUNTIME:
+///////////////////////////////////
+
+void run(const char* filename, const char* text)
 {
 	Lexer lexer = mk_Lexer(filename, text);
+	Pair pair = Lexer_MakeTokens(&lexer);
+	
+	TokenList ls = *((TokenList*)pair.data);
+	Error err = pair.error;
 
-	return Lexer_MakeTokens(&lexer);
+	if (err.error)
+		puts(Error_ToString(err));
+	else 
+		puts(TokenList_ToString(ls));
+
+	Parser parser = mk_Parser(ls);
+	BinOpNode ast = Parser_Parse(&parser);
+
+	puts(BinOpNode_ToString(ast));
 }

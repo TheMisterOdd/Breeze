@@ -3,18 +3,14 @@
 #include <stdio.h>
 
 ////////////////////////////////////
-//
-//	Uselful functions macros
-//
+//	Uselful functions macros:
 ////////////////////////////////////
 
 #define panic(_Buffer, ...) fprintf(stderr, _Buffer)
 #define cast_void_ptr(T, ptr) (*((T*)ptr))
 
 ////////////////////////////////////
-//
-//	Position Util
-//
+//	Position Util:
 ////////////////////////////////////
 
 typedef struct
@@ -31,10 +27,10 @@ Position mk_Position(int index, int line, int column, const char* filename, cons
 	self.column = column;
 
 	self.filename = (char*)malloc(sizeof(char) * (strlen(filename) + 1));
-	strcpy(self.filename, filename);
+	strcpy_s(self.filename, strlen(filename) + 1, filename);
 
 	self.filetext = (char*)malloc(sizeof(char) * (strlen(filetext) + 1));
-	strcpy(self.filetext, filetext);
+	strcpy_s(self.filetext, strlen(filetext) + 1, filetext);
 
 	return self;
 }

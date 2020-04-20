@@ -5,9 +5,10 @@
 
 #include "Utils.h"
 
-/*
-	ERRORS
-*/
+///////////////////////////////////
+//	ERROR:
+///////////////////////////////////
+
 typedef struct
 {
 	Position pos_start, pos_end;
@@ -20,8 +21,8 @@ typedef struct
 const char* Error_ToString(Error self)
 {
 	char* _Buffer = (char*)malloc(sizeof(char) * 512);
-	sprintf(_Buffer, "%s: '%s'.", self.error, self.details);
-	sprintf(_Buffer, "%s\nFile '%s', line: %d, index: %d.",_Buffer, self.pos_start.filename, self.pos_start.line + 1, self.pos_start.index + 2);
+	sprintf_s(_Buffer, 512, "%s: '%s'.", self.error, self.details);
+	sprintf_s(_Buffer, 512, "%s\nFile '%s', line: %d, index: %d.",_Buffer, self.pos_start.filename, self.pos_start.line + 1, self.pos_start.index + 2);
 
 	return _Buffer;
 }
