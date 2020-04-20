@@ -26,8 +26,6 @@ const char* Error_ToString(Error self)
 	return _Buffer;
 }
 
-typedef Error IllegalCharacterError;
-
 #define mk_IllegalCharacterError(pos_start, pos_end, details) ((Error) { pos_start, pos_end, "Illegal Character", details })
 
 void Error_Free(Error* self) 
