@@ -28,15 +28,15 @@ bool in(char c, const char* arr)
 #define LPAREN 7
 #define RPAREN 8
 
-#define TokType char
+typedef char TokType;
 
 typedef struct
 {
-	TokType T;
+	TokType type;
 	void* value;
 } Token;
 
-#define mk_Token(T, value) ((Token) { T, (void*)value })
+#define mk_Token(type, value) ((Token) { type, (void*)value })
 
 typedef struct
 {
@@ -46,9 +46,9 @@ typedef struct
 
 #define mk_TokenList() ((TokenList) { NULL, -1 })
 
-const char* TokenType_ToString(enum TokenType T)
+const char* TokenType_ToString(TokType type)
 {
-	switch (T)
+	switch (type)
 	{
 	case INT: return "i32";
 	case FLOAT: return "f32";
@@ -70,15 +70,15 @@ char* Token_ToString(Token self)
 		return NULL;
 	}
 
-	const char* TT_Buffer = TokenType_ToString(self.T);
+	const char* TT_Buffer = TokenType_ToString(self.type);
 	if (self.value != NULL)
 	{
-		if (self.T == INT)
+		if (self.type == INT)
 		{
 			int i = *((int*)self.value);
 			sprintf_s(_Buffer, 512, "%s: %ld", TT_Buffer, i);
 		}
-		else if (self.T == FLOAT)
+		else if (self.type == FLOAT)
 		{
 			float f = *((float*)self.value);
 			sprintf_s(_Buffer, 512, "%s: %f", TT_Buffer, f);

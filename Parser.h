@@ -75,7 +75,7 @@ Token Parser_Advance(Parser* self)
 NumberNode Parser_GetFactor(Parser* self)
 {
 	Token token = self->current;
-	if (token.T == INT || token.T == FLOAT) 
+	if (token.type == INT || token.type == FLOAT)
 	{
 		Parser_Advance(self);
 		return (NumberNode){ token };
@@ -88,7 +88,7 @@ BinOpNode Parser_GetTerm(Parser* self)
 	NumberNode left = Parser_GetFactor(self);
 	BinOpNode op;
 
-	while (self->current.T == MUL || self->current.T == DIV)
+	while (self->current.type == MUL || self->current.type == DIV)
 	{
 		Token op_tok = self->current;
 		NumberNode right = Parser_GetFactor(self);
@@ -103,7 +103,7 @@ BinOpNode Parser_GetExpr(Parser* self)
 	NumberNode left = Parser_GetFactor(self);
 	BinOpNode op;
 
-	while (self->current.T == PLUS || self->current.T == MINUS)
+	while (self->current.type == PLUS || self->current.type == MINUS)
 	{
 		Token op_tok = self->current;
 		Parser_Advance(self);
