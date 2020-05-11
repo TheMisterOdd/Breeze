@@ -39,7 +39,7 @@ fn main()
   vec.y = 2
   
   # also, you could alloc memory like this
-  vec2 = &Vector<f32>(1, 2)
+  vec2 = &Vector<f32>{1, 2}
   
 }
 ```
