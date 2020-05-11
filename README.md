@@ -99,23 +99,33 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```julia
-struct OwnArray<T>:
+struct OwnArray<T> 
+{
   priv data: []T
   
-  pub constr(data: []T):
+  pub constr(data: []T) 
+  {
     self.data = data
-  
-  pub constr(data: ... T):      # In order to put infinite arguments
+  }
+
+  pub constr(data: ... T)      # In order to put infinite arguments
+  {
     for index, value in data
       self.data[index] = value
-    
-  pub fn size():
+  }
+  
+  pub fn size() 
+  {
     return data.size()
-    
-  pub operator self():
+  }
+  
+  
+  pub operator self() 
+  {
     return self.data
+  }
     
-    
+}
 fn main():
   a = OwnArray<i32>([1, 2, 3]) # 1st constructor
   b = OwnArray<i32>(1, 2, 3)   # 2nd constructor
