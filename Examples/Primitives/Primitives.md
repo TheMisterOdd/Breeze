@@ -13,7 +13,7 @@ x: i8 = 255 # Maximun capacity of an i8   # NOTE: x = 256 will print an error of
 print(x) # i8 variable
 
 # If you put:
-println(i8.size()) # It prints you the size that an specific varible type can support, in this case i8
+println(i8::size()) # It prints you the size that an specific varible type can support, in this case i8
 
 logic: bool = true # Logical operator
 println(logic)
