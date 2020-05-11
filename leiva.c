@@ -29,7 +29,8 @@ void print_dir()
 
     if (dr == NULL) 
     {
-        printf("Could not open current directory");
+        printf("Could not open current directory.");
+        closedir(dr);
         return;
     }
 
@@ -53,7 +54,7 @@ int interpret(int args, char** argv)
 		printf("%s: alloc error: could alloc internal variable '_Buffer'.\n", argv[0]);
 		return -1;
 	}
-	strcpy(_Buffer, "leivac");
+	strcpy_s(_Buffer, 512, "leivac");
 	bool ifExit = false, ifArgs = false;
 
 	// Getting files:
@@ -68,7 +69,9 @@ int interpret(int args, char** argv)
 		}
 
 		// Cheking if the given file existis:
-		FILE* fp = fopen(argv[i], "rb");
+		FILE* fp = NULL;
+		fopen_s(&fp, argv[i], "rb");
+		
 		if (fp == NULL)
 		{
 			printf("%s: %s: No such file or directory.\n", argv[0], argv[i]);
