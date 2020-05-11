@@ -12,14 +12,14 @@ Constants can also be created via the ```const``` and ```static``` keywords.
 
 struct vec3_ # without constructor
 {
-  pub x: f32
-  pub y: f32
+  pub var x: f32
+  pub var y: f32
 }
 
 struct vec3: # with constructor
 {
-  pub x: f32
-  pub y: f32
+  pub var x: f32
+  pub var y: f32
   
   constr(x, y) # this is how the constructor is defined, is like a normal function, but it will called once you create an struct (if it has one)
   {
@@ -49,10 +49,11 @@ For more complex structures go [here]()
 
 ## ```enum```
 ```julia
-enum Types:
+enum Types {
   TYPE_1,
   TYPE_2,
   TYPE_3
+}
 
 t: Types = TYPE_1
 println(t)
