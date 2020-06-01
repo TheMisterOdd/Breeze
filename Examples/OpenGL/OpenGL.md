@@ -48,12 +48,11 @@ fn main(args: []string)
   {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPHT_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
-    
+    glDrawArrays(GL_TRIANGLES, 0, 3);
     
     glfwWindowSwapBuffers(window); 
     glfwPollEvents();
   }
-  
 }
 
 ```
