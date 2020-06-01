@@ -5,7 +5,7 @@
 - floating point: ```f32```, ```f64```
 - unicode scalar  ```char``` and ```string```. Also the ```string``` variable is an ```[]char``` (an array of ```char```)
 - ```bool``` either ```true``` or ```false```
-- The unit type ```unit```, whose only possible value is an empty value
+- The unit / void type ```unit```, whose only possible value is an empty touple: ```()```
 
 ```julia
 
