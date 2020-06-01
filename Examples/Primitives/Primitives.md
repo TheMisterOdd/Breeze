@@ -43,7 +43,7 @@ String
 - arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: [S]T = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
 - lists: ```{1, true, 3.14f}```
 - tuples: ```(1, 0, 11, 2231)```
-- memory blocks: ```interface{}```, also know as ```unsafe pointer```
+- memory blocks: ```interface{}```, also know as ```unsafe pointer``` and the equivalent in C is ```void*```
 
 ```julia
 
