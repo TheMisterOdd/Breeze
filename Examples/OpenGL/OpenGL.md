@@ -11,7 +11,7 @@
 import extern "glfw/glfw3.h" # The 'extern' keyword indicates that we are importing 
 import extern "glad/glad.h"  # something directly from C or C++ and maybe in further updates from other languages
 
-import mem
+import unsafe
 
 fn main(args: []string) 
 {
@@ -38,10 +38,10 @@ fn main(args: []string)
   var buffer: u32
   glGenBuffers(1, &buffer)
   glBindBuffer(GL_ARRAY_BUFFER, buffer)
-  glBufferData(GL_ARRAY_BUFFER, mem.sizeof(vertices) * vertices.lenght(), &vertices)
+  glBufferData(GL_ARRAY_BUFFER, unsafe.Sizeof(f32) * vertices.Size(), unsafe.Pointer(vertices))
   
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, f32.bytes() * 3, static_cast<&()>);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, unsafe.Sizeof(f32) * 3, (unsafe.Pointer*)(0));
 
   
   while not glfwWindowShouldClose() 
