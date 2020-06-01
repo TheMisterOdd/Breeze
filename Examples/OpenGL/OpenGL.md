@@ -38,10 +38,10 @@ fn main(args: []string)
   var buffer: u32
   glGenBuffers(1, &buffer)
   glBindBuffer(GL_ARRAY_BUFFER, buffer)
-  glBufferData(GL_ARRAY_BUFFER, unsafe.Sizeof(f32) * vertices.Size(), (interface{})(vertices))
+  glBufferData(GL_ARRAY_BUFFER, unsafe.Sizeof(f32) * vertices.Size(), (unsafe.Pointer)(vertices))
   
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, unsafe.Sizeof(f32) * 3, (interface{})(0));
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, unsafe.Sizeof(f32) * 3, (unsafe.Pointer)(0));
 
   
   while not glfwWindowShouldClose() 
