@@ -13,7 +13,7 @@ x: i8 = 255 # Maximun capacity of an i8   # NOTE: x = 256 will print an error of
 print(x) # i8 variable
 
 # If you put:
-println(i8.size()) # It prints you the size that an specific varible type can support, in this case i8
+println(i8.Max()) # It prints you the size that an specific varible type can support, in this case i8
 
 logic: bool = true # Logical operator
 println(logic)
@@ -43,7 +43,7 @@ String
 - arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: [S]T = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
 - lists: ```{1, true, 3.14f}```
 - tuples: ```(1, 0, 11, 2231)```
-- memory blocks: ```&()```, represented with an ```&``` and a empty touple: ```()```
+- memory blocks: ```interface{}```, also know as ```unsafe pointer```
 
 ```julia
 
