@@ -41,7 +41,7 @@ fn main(args: []string)
   glBufferData(GL_ARRAY_BUFFER, unsafe.Sizeof(f32) * vertices.Size(), unsafe.Pointer(vertices))
   
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, unsafe.Sizeof(f32) * 3, (unsafe.Pointer*)(0));
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, unsafe.Sizeof(f32) * 3, (unsafe.Pointer)(0));
 
   
   while not glfwWindowShouldClose() 
