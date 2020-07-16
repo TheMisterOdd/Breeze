@@ -45,53 +45,53 @@ Hello World!!!
 ```
 #### Fibbonacci numbers:
 ```julia
-fn fibb(n)
-{
-  if n == 0 or n == 1 
-    return 1
-  else
+fn fib(n: i32) -> i32 {
+  if n <= 1 {
+    return n
+  }
+  else {
     return fibb(n - 1) + fibb(n - 2)
+  }
 }
   
 
-fn main() 
-{
-  for i in range 10
-    print(fibb(i)) if i == 9  else print(fibb(i) + ", ")
+fn main() {
+  for let i = 0; i < 10; i++ {
+    print(fib(i), "")
+  }
 }
 
 ```
 ```
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+0 1 1 2 3 5 8 13 21 34
 ```
 
 #### Double return:
 ```julia
-fn swap(*a, *b)
-{
+fn swap(a: *GenericType, b: *GenericType) {
   *a, *b = *b, *a
 }
   
 
-fn pair() 
-{
+fn pair() -> ([]i32, string) { 
   return [], "Here I return an array to you."
 }
 
-a, b = 10, 6
+fn main() {
+  a, b = 10, 6
 
-println(a + ", " + b) # Before
-swap(&a, &b)
-println(a + ", " + b) # After
-println()
+  println(a, b) # Before
+  swap(&a, &b)
+  println(a, b, "\n") # After
 
-arr, str = pair()
-println(arr)
-println(str)
+  arr, str = pair()
+  println(arr)
+  println(str)
+}
 ```
 ```
-10, 6
-6, 10
+10 6
+6 10
 
 []
 Here I return an array to you.
@@ -99,8 +99,7 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```julia
-struct OwnArray<T> 
-{
+struct OwnArray<T> {
   priv data: []T
   
   pub constr(data: []T) 
@@ -108,20 +107,17 @@ struct OwnArray<T>
     self.data = data
   }
 
-  pub constr(data: ... T)      # In order to put infinite arguments
-  {
-    for index, value in data
+  pub constr(data: ... T) {      # In order to put infinite arguments
+    for value, index in data
       self.data[index] = value
   }
   
-  pub fn size() 
-  {
-    return data.size()
+  pub fn size() -> size {
+    return len(self.data)
   }
   
   
-  pub operator self() 
-  {
+  pub operator self() -> []T {
     return self.data
   }
     
@@ -130,11 +126,11 @@ fn main():
   a = OwnArray<i32>([1, 2, 3]) # 1st constructor
   b = OwnArray<i32>(1, 2, 3)   # 2nd constructor
   
-  println(a + ", " + b)
+  println(a, b)
   
 ```
 ```
-[1, 2, 3], [1, 2, 3]
+[1, 2, 3] [1, 2, 3]
 ```
 
 ## Leiva by examples:
