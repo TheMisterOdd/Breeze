@@ -99,34 +99,44 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```julia
-struct OwnArray<T> {
-  priv data: []T
-  
-  pub constr(data: []T) 
-  {
-    self.data = data
-  }
+struct OwnArray<T: type, cap: size> {
 
-  pub constr(data: ... T) {      # In order to put infinite arguments
-    for value, index in data
-      self.data[index] = value
+  priv var _Data: [size]T
+
+  pub constr(args... T) {
+     for let arg = range args {
+        self._Data = append(self._Data, arg)
+     }
   }
   
-  pub fn size() -> size {
-    return len(self.data)
+  pub operator [](N: size) -> &T /* returns a reference, instead of copying memory */ {
+    return self._Data[N]
   }
   
-  
-  pub operator self() -> []T {
-    return self.data
+  /* Built-in functions can be use as operators */ 
+  pub operator len -> size {
+    return len(self._Data)
   }
-    
+  
+  pub operator cap -> size {
+    return cap(self._Data)
+  }
+  
+  String() {
+    return string(self._Data)
+  }
+  
 }
-fn main():
-  a = OwnArray<i32>([1, 2, 3]) # 1st constructor
-  b = OwnArray<i32>(1, 2, 3)   # 2nd constructor
+
+fn main() {
   
-  println(a, b)
+  let a = OwnArray(1, 2, 3)
+  let b = [1, 2, 3]
+  
+  println(a)
+  println(b)
+  
+}
   
 ```
 ```
