@@ -37,20 +37,20 @@ leiva build main.lei -o executable
 
 ## Examples
 #### Hello World:
-```julia
+```
 println("Hello World!!!")
 ```
 ```
 Hello World!!!
 ```
 #### Fibbonacci numbers:
-```julia
+```
 fn fib(n: i32) -> i32 {
   if n <= 1 {
     return n
   }
   else {
-    return fibb(n - 1) + fibb(n - 2)
+    return fib(n - 1) + fib(n - 2)
   }
 }
   
@@ -67,14 +67,14 @@ fn main() {
 ```
 
 #### Double return:
-```julia
+```
 fn swap(a: *GenericType, b: *GenericType) {
   *a, *b = *b, *a
 }
   
 
 fn pair() -> ([]i32, string) { 
-  return [], "Here I return an array to you."
+  return i32[], "Here I return an array to you."
 }
 
 fn main() {
@@ -98,7 +98,7 @@ Here I return an array to you.
 ```
 
 #### Object Oriented:
-```julia
+```
 struct OwnArray<T: type, cap: size> {
 
   priv var _Data: [size]T
@@ -130,8 +130,8 @@ struct OwnArray<T: type, cap: size> {
 
 fn main() {
   
-  let a = OwnArray(1, 2, 3)
-  let b = [1, 2, 3]
+  let a = OwnArray<i32>(1, 2, 3)
+  let b [3]i32 = [1, 2, 3]
   
   println(a)
   println(b)
