@@ -1,7 +1,7 @@
 # Primitives variables
 ### Scalar Types
-- signed integers: ```i8```, ```i16```, ```i32```, ```i64```, ```i128``` and ```size (pointer size)```
-- unsigned integers: ```u8```, ```u16```, ```u32```, ```u64```, ```u128```
+- signed integers: ```i8```, ```i16```, ```i32```, ```i64```, ```i128``` and ```isize (pointer size)```
+- unsigned integers: ```u8```, ```u16```, ```u32```, ```u64```, ```u128``` and ```usize (pointer size)```
 - floating point: ```f32```, ```f64```
 - character scalar  ```char``` and ```string```. Also the ```string``` variable is an ```[]char``` (an array of ```char```)
 - ```bool``` either ```true``` or ```false```
