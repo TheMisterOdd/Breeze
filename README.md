@@ -6,21 +6,13 @@ There are not actual releases, since this language is a prototype.
 Leiva is written primary in [C](https://es.wikipedia.org/wiki/C_(lenguaje_de_programaci%C3%B3n)) and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
 
 ##### How it works?
-**interpreter:**
-```
-leiva
-  └─ parse
-       └─ interpretation
-            └─ output
-```
-
 **compiler:**
 ```
 leiva
-  └─ parse
-       └─ translation to C
-            └─ gcc compiles the C source code
-                 └─ executable
+  └─ back-end
+        └─ translation to C
+             └─ gcc compiles the C source code
+                  └─ executable
 ```
 
 ## Compilation
