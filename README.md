@@ -3,7 +3,7 @@
 There are not actual releases, since this language is a prototype. 
 
 ## How Leiva works:
-Leiva is written primary in [C](https://es.wikipedia.org/wiki/C_(lenguaje_de_programaci%C3%B3n)) and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
+Leiva is written primary in C++ and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
 
 ##### How it works?
 **compiler:**
