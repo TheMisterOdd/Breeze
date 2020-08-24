@@ -9,7 +9,7 @@ Leiva is written primary in C++ and its resultant code is compiled with [gcc](ht
 **compiler:**
 ```
 leiva
-  └─ back-end
+  └─ front-end
         └─ translation to C
              └─ gcc compiles the C source code
                   └─ executable
