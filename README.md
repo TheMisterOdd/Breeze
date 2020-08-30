@@ -55,8 +55,8 @@ fn main() {
 
 #### Double return:
 ```
-fn swap(a, b *GenericType) {
-  *a, *b = *b, *a
+fn swap(a, b &GenericType) {
+  a, b = b, a
 }
   
 
