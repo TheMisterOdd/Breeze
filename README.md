@@ -94,7 +94,7 @@ struct OwnArray {
 }
 
 impl OwnArray {
-  fn String(OwnArray& self) -> string {
+  fn String(self &OwnArray) -> string {
     return self.data
   }
 }
