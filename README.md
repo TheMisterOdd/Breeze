@@ -86,26 +86,24 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```
+-- array.lei --
+package array
+
 struct OwnArray {
   data []any // variables with a lowercase starting letter, will be private.
 }
 
 impl OwnArray {
-  
-  /* Constructor */
-  fn New(elems ...any) -> {
-    self := new(OwnArray)
-    self.data = [elems]
-  }
-  
   fn String(OwnArray& self) -> string {
     return self.data
   }
 }
 
+
+-- main.lei --
 fn main() {
   
-  a := OwnArray.New(1, 2, 3)
+  a := array.New(1, 2, 3)
   b [3]i32 := [1, 2, 3]
   
   println(a)
