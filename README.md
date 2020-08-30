@@ -95,7 +95,14 @@ struct OwnArray<T type> {
   data []T // variables with a lowercase starting letter, will be private.
 }
 
-impl OwnArray {
+impl OwnArray<T type> {
+  
+  /* Constructor */
+  fn New(elems ...T) -> {
+    self := new(OwnArray<T>)
+    self.data = T[elems]
+  }
+  
   fn String(OwnArray& self) -> string {
     return self.data
   }
