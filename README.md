@@ -17,14 +17,9 @@ leiva
 
 ## Compilation
 
-#### If you want to interpret your code use:
-```
-leiva main.lei
-```
-
 #### If you want to compile and create an executable of your code use:
 ```
-leiva build main.lei -o executable
+leiva build main.lei <args> -o [executable_name]
 ```
 
 ## Examples
