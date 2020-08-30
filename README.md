@@ -91,39 +91,20 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```
-struct OwnArray<T: type, cap: size> {
+struct OwnArray<T type> {
+  data []T // variables with a lowercase starting letter, will be private.
+}
 
-  priv var _Data: [size]T
-
-  pub constr(args... T) {
-     for let arg = range args {
-        self._Data = append(self._Data, arg)
-     }
+impl OwnArray {
+  fn String(OwnArray& self) -> string {
+    return self.data
   }
-  
-  pub operator [](N: size) -> &T /* returns a reference, instead of copying memory */ {
-    return self._Data[N]
-  }
-  
-  /* Built-in functions can be use as operators */ 
-  pub operator len -> size {
-    return len(self._Data)
-  }
-  
-  pub operator cap -> size {
-    return cap(self._Data)
-  }
-  
-  String() {
-    return string(self._Data)
-  }
-  
 }
 
 fn main() {
   
-  let a = OwnArray<i32>(1, 2, 3)
-  let b [3]i32 = [1, 2, 3]
+  a := OwnArray<i32>(1, 2, 3)
+  b [3]i32 := [1, 2, 3]
   
   println(a)
   println(b)
