@@ -32,7 +32,7 @@ Hello World!!!
 ```
 #### Fibbonacci numbers:
 ```
-fn fib(n: i32) -> i32 {
+fn fib(n i32) -> i32 {
   if n <= 1 {
     return n
   }
@@ -55,7 +55,7 @@ fn main() {
 
 #### Double return:
 ```
-fn swap(a *GenericType, b *GenericType) {
+fn swap(a, b *GenericType) {
   *a, *b = *b, *a
 }
   
