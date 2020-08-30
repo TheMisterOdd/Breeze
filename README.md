@@ -48,7 +48,7 @@ fn fib(n: i32) -> i32 {
   
 
 fn main() {
-  for let i = 0; i < 10; i++ {
+  for i := 0; i < 10; i++ {
     print(fib(i), "")
   }
 }
@@ -60,7 +60,7 @@ fn main() {
 
 #### Double return:
 ```
-fn swap(a: *GenericType, b: *GenericType) {
+fn swap(a *GenericType, b *GenericType) {
   *a, *b = *b, *a
 }
   
@@ -76,7 +76,7 @@ fn main() {
   swap(&a, &b)
   println(a, b, "\n") # After
 
-  arr, str = pair()
+  arr, str := pair()
   println(arr)
   println(str)
 }
@@ -91,16 +91,16 @@ Here I return an array to you.
 
 #### Object Oriented:
 ```
-struct OwnArray<T type> {
-  data []T // variables with a lowercase starting letter, will be private.
+struct OwnArray {
+  data []any // variables with a lowercase starting letter, will be private.
 }
 
 impl OwnArray<T type> {
   
   /* Constructor */
-  fn New(elems ...T) -> {
-    self := new(OwnArray<T>)
-    self.data = T[elems]
+  fn New(elems ...any) -> {
+    self := new(OwnArray)
+    self.data = [elems]
   }
   
   fn String(OwnArray& self) -> string {
@@ -110,7 +110,7 @@ impl OwnArray<T type> {
 
 fn main() {
   
-  a := OwnArray<i32>(1, 2, 3)
+  a := OwnArray.New(1, 2, 3)
   b [3]i32 := [1, 2, 3]
   
   println(a)
