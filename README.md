@@ -65,7 +65,7 @@ fn pair() -> ([]i32, string) {
 }
 
 fn main() {
-  a, b = 10, 6
+  a, b := 10, 6
 
   println(a, b) # Before
   swap(&a, &b)
@@ -90,7 +90,7 @@ struct OwnArray {
   data []any // variables with a lowercase starting letter, will be private.
 }
 
-impl OwnArray<T type> {
+impl OwnArray {
   
   /* Constructor */
   fn New(elems ...any) -> {
