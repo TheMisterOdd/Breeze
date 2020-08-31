@@ -68,7 +68,7 @@ fn main() {
   a, b := 10, 6
 
   println(a, b) # Before
-  swap(&a, &b)
+  swap(a, b)
   println(a, b, "\n") # After
 
   arr, str := pair()
@@ -101,9 +101,12 @@ impl OwnArray {
 
 
 -- main.lei --
+
+import "array"
+
 fn main() {
   
-  a := array.New(1, 2, 3)
+  a := array.array {[1, 2, 3]}
   b [3]i32 := [1, 2, 3]
   
   println(a)
