@@ -107,7 +107,7 @@ import "array"
 fn main() {
   
   a := array.array {[1, 2, 3]}
-  b [3]i32 := [1, 2, 3]
+  b := i32[1, 2, 3]
   
   println(a)
   println(b)
