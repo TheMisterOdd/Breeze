@@ -25,6 +25,8 @@ leiva build main.lei <args> -o [executable_name]
 ## Examples
 #### Hello World:
 ```
+package main
+
 fn main() {
     println("Hello World!!!")
 }
