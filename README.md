@@ -101,7 +101,7 @@ impl OwnArray {
 
 
 -- main.lei --
-
+package main
 import "array"
 
 fn main() {
