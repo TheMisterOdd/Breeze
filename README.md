@@ -67,9 +67,9 @@ fn pair() -> ([]i32, string) {
 fn main() {
   a, b := 10, 6
 
-  println(a, b) # Before
+  println(a, b) // Before
   swap(a, b)
-  println(a, b, "\n") # After
+  println(a, b, "\n") // After
 
   arr, str := pair()
   println(arr)
@@ -102,12 +102,13 @@ impl OwnArray {
 
 -- main.lei --
 package main
+
 import "array"
 
 fn main() {
   
-  a := array.array {[1, 2, 3]}
-  b := i32[1, 2, 3]
+  a := array.array {[]i32 {1, 2, 3}}
+  b := []i32{1, 2, 3}
   
   println(a)
   println(b)
