@@ -45,7 +45,7 @@ leiva build <args> -o [executable_name]
 package main
 
 fn main()
-    println("Hello World!!!")
+  println("Hello World!!!")
 end
 ```
 ```
@@ -56,10 +56,10 @@ Hello World!!!
 package main
 
 fn main()
-    x := 1279
-    str := "Value of x is $x"
+  x := 1279
+  str := "Value of x is $x"
     
-    println(str)
+  println(str)
 end
 ```
 ```
@@ -127,7 +127,7 @@ struct OwnArray
 end
 
 fn (a OwnArray) String() string
-    return string(a.data)
+  return string(a.data)
 end
 
 
@@ -156,24 +156,22 @@ end
 package main
 
 fn fib(n u64, c chan u64)
-    x, y := 0, 1
-    for i := 0; i < n; i++
-        c <- x
-        x, y = y, x + y
-    end
-    close(c)
+  x, y := 0, 1
+  for i := 0; i < n; i++
+    c <- x
+    x, y = y, x + y
+  end
+  close(c)
 end
 
 fn main()
+  c := make(chan u64, 16)
+  rout := run fib(16, c)
 
-    c := make(chan u64, 16)
-    rout := run fib(16, c)
-
-    for n := range c
-        println(<- c)
-    end
-
-    join(rout) // join the routine
+  for n := range c
+    println(<- c)
+  end
+  join(rout) // join the routine
 end
 ```
 ## Leiva by examples:
