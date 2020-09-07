@@ -5,6 +5,21 @@ There are not actual releases, since this language is a prototype.
 ## How Leiva works:
 Leiva is written primary in C++ and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
 
+Leiva is strongly influenced by Go and C (but mostly Go). But you'll ask... If is based in Go, why you dont use Go instead?
+
+**various reasons:**
+* Go only allows, manual memory allocation, but no deallocation. My language is focus on embedded systems, so I also want manual deallocation of memory while keeping simple the development.
+
+* Make it more simple by removing not needed keywords such as ```var``` for defining variables. Variable creating would look like this ```t Type``` instead of ```var t Type```
+
+* Improve performamce by using GCC as the backend of the compiler. Also promoting the use of optimization flags: `-O2`, `-Os`, `-s`... for better optimized code than, Go's.
+
+* C is embedded into the language. You could simple call a C function or the C preprocesor with an '@': `@#include <math.h>` or `@sin(math.Pi / 2)`
+
+* Inlining. Don't need to call a function if you copy it's code into the source code, directly, whenever is called. This saves, time by avoiding function call overhead. Functions defined like this: `fn Sin(x f64) f64 = @sin(math.Deg(x))` will be inlined
+
+* More...
+
 ##### How it works?
 **compiler:**
 ```
