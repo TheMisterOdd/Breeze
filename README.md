@@ -123,13 +123,11 @@ Here I return an array to you.
 package array
 
 struct OwnArray
-  data []any // variables with a lowercase starting letter, will be private.
+  data []any // variables with a lowercase starting letter, will be hidden
 end
 
-impl OwnArray
-  fn String(self &OwnArray) string 
-    return self.data
-  end
+fn (a OwnArray) String() string
+    return string(a.data)
 end
 
 
@@ -153,7 +151,29 @@ end
 [1, 2, 3] 
 [1, 2, 3]
 ```
+#### Coroutines:
+package main
 
+fn fib(n u64, c chan u64)
+    x, y := 0, 1
+    for i := 0; i < n; i++
+        c <- x
+        x, y = y, x + y
+    end
+    close(c)
+end
+
+fn main()
+
+    c := make(chan u64, 16)
+    rout := run fib(16, c)
+
+    for n := range c
+        println(<- c)
+    end
+
+    join(rout) // join the routine
+end
 ## Leiva by examples:
 | Nº            | Tutorial      | Complexity      |
 | ------------- |:-------------:|:---------------:|
