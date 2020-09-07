@@ -152,6 +152,7 @@ end
 [1, 2, 3]
 ```
 #### Coroutines:
+```
 package main
 
 fn fib(n u64, c chan u64)
@@ -174,6 +175,7 @@ fn main()
 
     join(rout) // join the routine
 end
+```
 ## Leiva by examples:
 | Nº            | Tutorial      | Complexity      |
 | ------------- |:-------------:|:---------------:|
