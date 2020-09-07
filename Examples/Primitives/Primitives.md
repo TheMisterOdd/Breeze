@@ -7,26 +7,28 @@
 - ```bool``` either ```true``` or ```false```
 - The unit / void type ```unit```, whose only possible value is an empty touple: ```()```
 
-```julia
+```
+package main
 
-x: i8 = 255 # Maximun capacity of an i8   # NOTE: x = 256 will print an error of exceded capacity of an i8
-print(x) # i8 variable
+import "math"
 
-# If you put:
-println(i8.Max()) # It prints you the size that an specific varible type can support, in this case i8
+fn main()
+    x u8 = 255  // variable that can hold 8 bits of int data.
+    println(x)
+    
+    println(math.MaxUint8)  // maximun value that a 'u8' can hold
+    
+    b bool = true // boolean, can be either true or false
+    println(b) 
 
-logic: bool = true # Logical operator
-println(logic)
+    str string = "This is a string" // chain of characters
+    println(str)
+    
+    f f64 = 3.71 // floating point variable, can hold 8 bytes of data
+    println(f)
 
-str = "String" # string variable, it could be also defined 'str: string = "String"' or  'str: []char = "String"'
-println(str)
-
-a = 1.0 # This is an 'f64'
-println(a)
-
-pi = 3.1415f # The 'f' at the end of the number indicates that the variable is a floating number (f32)
-println(pi)
-
+    pi f32 = 3.1415F // the f at the end of the number indecates that is a 4 bytes floating point variable
+end
 ```
 
 ##### Output:
@@ -34,22 +36,20 @@ println(pi)
 255
 256
 true
-String
-1.0
+This is a string
+3.71
 3.1415
 ```
 
 ### Compound Types
-- arrays: ```[1, 2, 3]```, also could be defined as ```var = [...]``` or ```var: [S]T = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
-- lists: ```{1, true, 3.14f}```
-- tuples: ```(1, 0, 11, 2231)```
+- arrays: ```[]i32 {1, 2, 3}```, also could be defined as ```var = [...]``` or ```var: [S]T = [...]```, where ```T``` is the type of variable that is going to be stored and ```S``` is the size of the array.
 - memory blocks: ```interface{}```, also know as ```unsafe pointer``` and the equivalent in C is ```void*```
 
 ```julia
 
-array1: []i32 = [1, 2, 3] # If you don't put anything inside '[]' before the 'i32', the code will create a dynamic allocated array
+array1 := []i32{1, 2, 3} # If you don't put anything inside '[]' before the 'i32', the code will create a dynamic allocated array
 # or
-array2 = [] # Null array
+array2 = []i32{} # Null array
 println(array1)
 println(array2)
 
