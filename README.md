@@ -2,7 +2,7 @@
 ## Download & Installation
 There are not actual releases, since this language is a prototype. 
 
-## How Leiva works:
+## How Leiva works
 Leiva is written primary in C++ and its resultant code is compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
 
 Leiva is strongly influenced by Go and C (but mostly Go). But you'll ask... If is based in Go, why you don't use Go instead?
@@ -17,6 +17,8 @@ Leiva is strongly influenced by Go and C (but mostly Go). But you'll ask... If i
 * C is embedded into the language. You could simple call a C function or the C preprocesor with an '@': `@#include <math.h>` or `@sin(90)`
 
 * Inlining. Don't need to call a function if you copy it's code into the source code, directly, whenever is called. This saves, time by avoiding function call overhead. Functions defined like this: `fn Sin(x f64) f64 = @sin(math.Deg(x))` will be inlined
+
+* Built-In basic `print` and `println`. Also supports format by using `string` formatting.
 
 * More...
 
@@ -34,9 +36,9 @@ leiva
 
 #### If you want to compile and create an executable of your code use:
 ```
-leiva build main.lei <args> -o [executable_name]
+leiva build <args> -o [executable_name]
 ```
-
+**NOTE**: the `build` argument, gets all the `.lei` files at the directory, for compiling them.
 ## Examples
 #### Hello World:
 ```
@@ -48,6 +50,20 @@ end
 ```
 ```
 Hello World!!!
+```
+#### String Format:
+```
+package main
+
+fn main()
+    x := 1279
+    str := "Value of x is $x"
+    
+    println(str)
+end
+```
+```
+Value of x is 1279
 ```
 #### Fibbonacci numbers:
 ```
