@@ -36,20 +36,18 @@ Hello World!!!
 ```
 #### Fibbonacci numbers:
 ```
-fn fib(n i32) -> i32 {
-  if n <= 1 {
+fn fib(n u64) u64 
+  if n <= 1
     return n
-  }
-  else {
-    return fib(n - 1) + fib(n - 2)
-  }
-}
+  end
+  return fib(n - 1) + fib(n - 2)
+ens
   
 
 fn main() {
-  for i := 0; i < 10; i++ {
+  for i := 0; i < 10; i++
     print(fib(i), "")
-  }
+  end
 }
 
 ```
@@ -59,16 +57,16 @@ fn main() {
 
 #### Double return:
 ```
-fn swap(a, b &GenericType) {
+fn swap(a, b &GenericType)
   a, b = b, a
-}
+end
   
 
-fn pair() -> ([]i32, string) { 
-  return i32[], "Here I return an array to you."
-}
+fn pair() ([]i32, string)
+  return []i32{}, "Here I return an array to you."
+end
 
-fn main() {
+fn main()
   a, b := 10, 6
 
   println(a, b) // Before
@@ -78,7 +76,7 @@ fn main() {
   arr, str := pair()
   println(arr)
   println(str)
-}
+end
 ```
 ```
 10 6
@@ -93,15 +91,15 @@ Here I return an array to you.
 -- array.lei --
 package array
 
-struct OwnArray {
+struct OwnArray
   data []any // variables with a lowercase starting letter, will be private.
-}
+end
 
-impl OwnArray {
-  fn String(self &OwnArray) -> string {
+impl OwnArray
+  fn String(self &OwnArray) string 
     return self.data
-  }
-}
+  end
+end
 
 
 -- main.lei --
@@ -109,15 +107,15 @@ package main
 
 import "array"
 
-fn main() {
+fn main()
   
-  a := array.array {[]i32 {1, 2, 3}}
+  a := array.OwnArray {[]i32 {1, 2, 3}}
   b := []i32{1, 2, 3}
   
   println(a)
   println(b)
   
-}
+end
   
 ```
 ```
