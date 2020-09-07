@@ -44,11 +44,11 @@ fn fib(n u64) u64
 ens
   
 
-fn main() {
+fn main()
   for i := 0; i < 10; i++
     print(fib(i), "")
   end
-}
+end
 
 ```
 ```
