@@ -1,74 +1,37 @@
-# Structs and enums
-### Custom Types
-- ```struct```: used to define a structure
-- ```enum```: used to define an enumeration
-
-Constants can also be created via the ```const``` and ```static``` keywords.
-
-## ```struct```
-#### Constructors:
-- The structs, can have a [constructor](https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)) or not, for example:
-```julia
-
-struct vec3_ # without constructor
-{
-  pub var x: f32
-  pub var y: f32
-}
-
-struct vec3: # with constructor
-{
-  pub var x: f32
-  pub var y: f32
-  
-  constr(x, y) # this is how the constructor is defined, is like a normal function, but it will called once you create an struct (if it has one)
-  {
-    self.x = x # this will save the values you put in the correspondant variables
-    self.y = y
-  }
-}
-a = vec3_{1, 2} # this is how you create a struct without a constructor 
-
-# NOTE: here you must define all the values inside the struct in order or putting the 
-# name of the variable before the value, for example: "vec3_{y=2, x=1}"
-
-b = vec3(1, 2) # this is how you create a struct with a constructor
-
+# Type, structs, enums and interfaces
+### Type:
+### Structs:
 ```
-For more complex structures go [here]()
+-- circle.lei --
+package circle
 
-#### Some ```std``` structs are:
+import "math"
 
-- ##### ```string```
-- ##### ```malloc```, ```realloc``` & ```alloc```
-- ##### ```async```
-- ##### ```map<T1, T2>```
-- ##### ```iterator<T>```
-- ##### etc.
+struct Circle
+    diameter u32 // lowercase-starting variables are hidden to the user
+    Radius u32 // uppercase-starting variables are public to the user
+end
 
+fn New(radius u32) *Cube
+    return &Cube { radius * 2, radius }
+end
 
-## ```enum```
-```julia
-enum Types {
-  TYPE_1,
-  TYPE_2,
-  TYPE_3
-}
+fn (c Cube) Area() f64
+    return math.Pi * c.Radius * c.Radius
+end
 
-t: Types = TYPE_1
-println(t)
+fn (c Cube) Perimeter() f64
+    return math.Pi * 2.0 * c.Radius
+end
 
-t = TYPE_2
-println(t)
+-- math.lei --
+package main
 
-t = TYPE_3
-println(t)
+import "circle"
 
-```
-
-```
-TYPE_1
-TYPE_2
-TYPE_3
+fn main()
+    c *circle.Circle = circle.New(1)
+    println(c.Area(), c.Perimeter())
+end
 ```
 
