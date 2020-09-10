@@ -16,7 +16,7 @@ package circle
 
 import "math"
 
-typw Circle struct
+type Circle struct
     diameter u32 // lowercase-starting variables are hidden to the user
     Radius u32 // uppercase-starting variables are public to the user
 end
