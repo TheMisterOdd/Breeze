@@ -99,6 +99,6 @@ fn main()
     res0 := Area(s)
     res1 := Area(c)
     
-    println(s, c)
+    println(res0, res1)
 end
 ```
