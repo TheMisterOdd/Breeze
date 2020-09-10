@@ -3,7 +3,7 @@
 There are not actual releases, since this language is a prototype. 
 
 ## How Leiva works
-Leiva is written primary in C and the leiva's source code is translated into C and compiled with [gcc](https://github.com/gcc-mirror/gcc). This gives Leiva a powerful typed and the speed and the low-level of C.
+Leiva is written primary in C and the leiva's source code is translated into C and compiled with [gcc](https://github.com/gcc-mirror/gcc) (might port to LLVM in the future). This gives Leiva a powerful typed and the speed and the low-level of C.
 
 Leiva is strongly influenced by Go and C (but mostly Go). But you'll ask... If is based in Go, why you don't use Go instead?
 
