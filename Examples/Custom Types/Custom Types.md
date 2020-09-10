@@ -93,8 +93,12 @@ package main
 import "polygons"
 
 fn main()
-    s := Square{}
-    c := Circle{}
+    s := Square{ 4 }
+    c := Circle{ 3 }
     
+    res0 := Area(s)
+    res1 := Area(c)
+    
+    println(s, c)
 end
 ```
