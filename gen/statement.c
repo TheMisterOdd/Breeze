@@ -13,11 +13,15 @@ LEI_API const char* lei_get_statement(struct elem** root)
     {      
         if (MATCH(e->value, "import")) 
         {
-            get_import(e);
+            lei_get_import(e);
         }
         else if (MATCH(e->value, "fn")) 
         {
-            get_function(e);
+            lei_get_function(e);
+        }
+        else if (MATCH(e->value, "package")) 
+        {
+            lei_get_package(e);
         }
         e = e->next;
     }
@@ -50,6 +54,14 @@ LEI_API void lei_get_import(struct elem* e)
     else 
     {
         printf("import: %s\n", (char*)e->next->value);
+    }
+}
+
+LEI_API void lei_get_package(struct elem* e) 
+{
+    if (((char*)(e->next->value))[0] == '"') 
+    {
+        printf("package %s\n", (char*)e->next->value);
     }
 }
 

@@ -1,6 +1,9 @@
 /* include */
 #include "translater.h"
 
+#include "lexer.h"
+#include "../gen/statement.h"
+
 #include <stdio.h>      // input and output, stream
 #include <string.h>     // string handeling 
 #include <malloc.h>     // memory allocation
@@ -10,8 +13,6 @@
 #include <dirent.h>     // analazing directories
 #include <pthread.h>    // threads
 
-#include "lexer.h"
-#include "../gen/statement.h"
 
 #define ERROR_NOT_LEI_EXTENSION     "leiva build: invalid extension at given file '%s'. Should use '.lei' extension.\n"
 #define WARNING_DUPLICATED_FILE     "leiva warning: skipping duplicated file: %s.\n"
