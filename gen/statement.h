@@ -6,4 +6,8 @@
 
 LEI_API const char* lei_get_statement(struct elem** root);
 
+LEI_API void lei_get_import(struct elem* e);
+
+LEI_API void lei_get_function(struct elem* e);
+
 #endif
