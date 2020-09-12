@@ -154,9 +154,14 @@ LEI_API void lei_translater_build(translater_t* self)
 }
 
 LEI_API void* lei_translate_thread(void* arg)
-{
+{   
+    char* file = (char*)arg;
     lexer_t lex;
-    lei_lexer_create(&lex, (char*)arg);
+    lei_lexer_create(&lex, file);
+
+    char* C_filename = calloc(sizeof(char), (strlen(file) + 1));
+    assert(C_filename);
+    sprintf(C_filename, "%s.c", file);
 
     list_t* toks = lei_lexer_make_tokens(&lex);
     if (toks == NULL) 
@@ -165,8 +170,7 @@ LEI_API void* lei_translate_thread(void* arg)
         exit(1);
     }
     
-    struct elem* e = toks->root;
-    lei_get_statement(&e);
+    lei_get_statements(C_filename, &toks->root);
 
     rmlist(&toks);
     return NULL;

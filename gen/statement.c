@@ -1,36 +1,44 @@
 #include "statement.h"
 
-#include <stddef.h>
 #include <string.h>
-#include <stdio.h>
+#include <malloc.h>
+#include <assert.h>
 
 #define MATCH(x, y) ((!strcmp((char*)x, (char*)y)))
 
-LEI_API const char* lei_get_statement(struct elem** root) 
+LEI_API void lei_get_statements(const char* C_filename, struct elem** root) 
 {   
+    printf("FILE: %s\n", C_filename);
+    lei_File* f = calloc(sizeof(lei_File), 1);
+    assert(f);
+
+    f->fp = fopen(C_filename, "wb");
+    assert(f->fp);
+
     struct elem* e = *root;
     while (e != NULL) 
     {      
         if (MATCH(e->value, "import")) 
         {
-            lei_get_import(e);
+            lei_get_import(f, e);
         }
         else if (MATCH(e->value, "fn")) 
         {
-            lei_get_function(e);
+            lei_get_function(f, e);
         }
         else if (MATCH(e->value, "package")) 
         {
-            lei_get_package(e);
+            lei_get_package(f, e);
         }
         e = e->next;
     }
 
-    return NULL;
+    printf("package: %s\n", f->package);
+    free(f);
 }
 
 // gets the series of imports
-LEI_API void lei_get_import(struct elem* e) 
+LEI_API void lei_get_import(lei_File* f, struct elem* e) 
 {   
     if (MATCH(e->next->value, "(")) 
     {   
@@ -57,15 +65,18 @@ LEI_API void lei_get_import(struct elem* e)
     }
 }
 
-LEI_API void lei_get_package(struct elem* e) 
-{
-    if (((char*)(e->next->value))[0] == '"') 
+LEI_API void lei_get_package(lei_File* f, struct elem* e) 
+{   
+    char* value = e->next->value;
+    if (value != NULL) 
     {
-        printf("package %s\n", (char*)e->next->value);
+        f->package = calloc(sizeof(char), strlen(value) + 1);
+        assert(f->package);
+        strcpy(f->package, value);
     }
 }
 
-LEI_API void lei_get_function(struct elem* e) 
+LEI_API void lei_get_function(lei_File* f, struct elem* e) 
 {
     char* name = (char*)e->next->value;
     printf("fn %s(", name);
@@ -73,7 +84,6 @@ LEI_API void lei_get_function(struct elem* e)
     e = e->next->next->next;
     while (e != NULL) 
     {   
-
         if (MATCH(e->value, ")")) 
             break;
             

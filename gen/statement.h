@@ -3,13 +3,30 @@
 
 #include "../leiva.h"
 #include "../list.h"
+#include <stdio.h>
 
-LEI_API const char* lei_get_statement(struct elem** root);
+typedef struct 
+{
+    // file pointer
+    FILE* fp;
 
-LEI_API void lei_get_import(struct elem* e);
+    // name of the package
+    char* package;
 
-LEI_API void lei_get_function(struct elem* e);
+    // list of constants
+    list_t* constants;
 
-LEI_API void lei_get_package(struct elem* e);
+    // list of imports
+    list_t* imports;
+
+} lei_File;
+
+LEI_API void lei_get_statements(const char* C_filename, struct elem** root);
+
+LEI_API void lei_get_import(lei_File* f, struct elem* e);
+
+LEI_API void lei_get_function(lei_File* f, struct elem* e);
+
+LEI_API void lei_get_package(lei_File* f, struct elem* e);
 
 #endif
