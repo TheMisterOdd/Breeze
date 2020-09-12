@@ -9,6 +9,7 @@
  *   - To my girl, Paula.
  */
 
+#define LEI_API
 
 #define NO_ARGS_ERROR	    "leiva: no arguments listed." /* Not arguments */
 #define NO_BUILD_ARGS_ERROR "leiva build: no listed files or arguments." /* Not arguments for the build command */
@@ -47,10 +48,6 @@
 #define KW_RUN     "run"
 #define KW_FMT     "format"
 
-#define MATCH(x, y) ((!strcmp(x, y)))
-
-#include "parse/args.h"
-#include "parse/translater.h"
-#include "parse/lexer.h"
+#define MATCH(x, y) ((!strcmp((char*)x, (char*)y)))
 
 #endif

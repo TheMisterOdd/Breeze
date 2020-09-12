@@ -4,22 +4,70 @@
 #include <string.h>
 #include <stdio.h>
 
-#define MATCH(x, y) ((!strcmp(x, y)))
+#define MATCH(x, y) ((!strcmp((char*)x, (char*)y)))
 
-const char* get_statement(struct elem** root) 
+// gets the series of imports
+static void get_import(struct elem* e) 
+{   
+    if (MATCH(e->next->value, "(")) 
+    {   
+        e = e->next;
+        while (e != NULL) 
+        {   
+            if (MATCH(e->next->value, "\\n")) 
+                goto skip;
+
+            if (MATCH(e->next->value, ")")) 
+            {
+                
+                break;
+            }
+
+            printf("import: %s\n", (char*)e->next->value);
+            
+            skip:
+            e = e->next;
+        }
+    }
+    else 
+    {
+        printf("import: %s\n", (char*)e->next->value);
+    }
+}
+
+static void get_function(struct elem* e) 
 {
-    while (*root != NULL) 
+    char* name = (char*)e->next->value;
+    printf("fn %s(", name);
+
+    e = e->next->next->next;
+    while (e != NULL) 
+    {   
+
+        if (MATCH(e->value, ")")) 
+            break;
+            
+        printf("%s ", (char*)e->value);
+
+        e = e->next;
+    }
+    printf(")\n");
+}
+
+LEI_API const char* lei_get_statement(struct elem** root) 
+{   
+    struct elem* e = *root;
+    while (e != NULL) 
     {      
-        struct elem* e = *root;
         if (MATCH(e->value, "import")) 
         {
-            printf("wants to import: %s\n", e->next->value);
+            get_import(e);
         }
         else if (MATCH(e->value, "fn")) 
         {
-            printf("function %s\n", e->next->value);
+            get_function(e);
         }
-        (*root) = (*root)->next;
+        e = e->next;
     }
 
     return NULL;

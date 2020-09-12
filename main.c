@@ -1,11 +1,14 @@
 #define LIST_IMPL
-#include "args.h"
+#include "list.h"
+#include "leiva.h"
+#include "parse/translater.h"
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Main is in charge of getting the program arguments and
-// analise them.
+// analizing them in the 'args_analize' function.
 int main(int argc, const char** argv) 
 {   
 
@@ -14,8 +17,8 @@ int main(int argc, const char** argv)
     // so an error is shown
     if (argc <= 1)
     {
-	fprintf(stderr, "%s\n", NO_ARGS_ERROR);
-	return 1;
+        fputs(NO_ARGS_ERROR "\n", stderr);
+		return EXIT_FAILURE;
     }
 
     // Loop over 'argv' to get the program arguments
@@ -26,59 +29,62 @@ int main(int argc, const char** argv)
         // if argument is 'help'
         // in development
         if (MATCH(argv[i], KW_HELP))
-	{
-		printf("%s\n", HELP);
-		break;
-	}
+		{
+			puts(HELP);
+			break;
+		}
         // if argument was 'version'
         // shows the version of the compiler,
         // also architecture and computer operating
         // system
         else if (MATCH(argv[i], KW_VERSION)) /* if the comand was 'version' */
-	{
-            	printf("leiva version %d.%d.%d %s/%s\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION, SYSTEM_ARCH, SYSTEM_OS);
-		break;
-	}
+		{
+            printf("leiva version %d.%d.%d %s/%s\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION, SYSTEM_ARCH, SYSTEM_OS);
+			break;
+		}
         // if the argument was 'build'
         // a specific function is going to be call
         // to translate the program into a binary file
-	else if (MATCH(argv[i], KW_BUILD)) /* if the comand was 'build' */
-	{
-		translater_t t;
-		translater_create(&t, &argv[i + 1], argc - i - 1);
-		translater_build(&t);
-		break;
-	}
+		else if (MATCH(argv[i], KW_BUILD)) /* if the comand was 'build' */
+		{
+            translater_t t;
+            lei_translater_create(&t, &argv[i + 1], (argc - i) - 1);
+            lei_translater_build(&t);
+			break;
+		}
         // if the argument was 'build'
         // a specific function is going to be call
         // to translate the program into a binary file
         // and then run the executable
-	else if (MATCH(argv[i], KW_RUN)) /* if the comand was 'run' */
-	{
-		if (argv[i + 1] == NULL)
+		else if (MATCH(argv[i], KW_RUN)) /* if the comand was 'run' */
 		{
-                	printf("%s\n", NO_RUN_ARGS_ERROR);
-			return 1; /* Fail. */
-		}
+			if (argv[i + 1] == NULL)
+			{
+                puts(NO_RUN_ARGS_ERROR);
+				return EXIT_SUCCESS; /* Fail. */
+			}
 
-		/*C out;
-		//translater_run(argc, argv, i, &out);*/
-		break;
-	}
+			/*
+            C out;
+			translater_run(argc, argv, i, &out);
+            */
+			break;
+		}
         // (in development)
         // this arguments parse the given file an shows its functions,
         // constanst and descriptions
         else if (MATCH(argv[i], KW_FMT))
         {
             puts("leiva fmt: in development.");
+            break;
         }
         // If the command was unknown
         // the compiler will print this:
-	else
-	{
-		fprintf(stderr, "leiva %s: unknow command\n", argv[i]);
-		return 1; /* Fail. */
-	}
+		else
+		{
+            fprintf(stderr, "leiva %s: unknow command\n", argv[i]);
+			return EXIT_FAILURE; /* Fail. */
+		}
     }
-    return 0;
+    return EXIT_SUCCESS;
 }

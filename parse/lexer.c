@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-static char* read_file(const char* filename)
+LEI_API static char* read_file(const char* filename)
 {
     long length;
 	FILE* f = fopen(filename, "rb");
@@ -32,14 +32,14 @@ static char* read_file(const char* filename)
 	return buffer;
 }
 
-void lexer_create(lexer_t* self, const char* filename)
+LEI_API void lei_lexer_create(lexer_t* self, const char* filename)
 {
     self->filename = filename;
     self->file = read_file(filename);
     self->index = -1;
 }
 
-list_t* lexer_make_tokens(lexer_t* self, size_t* len)
+LEI_API list_t* lei_lexer_make_tokens(lexer_t* self)
 {
 	char current;
 	list_t* ls = mklist();
@@ -51,26 +51,29 @@ list_t* lexer_make_tokens(lexer_t* self, size_t* len)
 		if (iscntrl(current) || isspace(current) || isblank(current))
 		{	
 			if (current == '\n') 
+			{
+				char* c = (char*)malloc(sizeof(char) * 3);
+				strcpy(c, "\\n");
+				pushbacklist(&ls, (void*)c);
 				line++;
+			}
+				
 
 			continue;
 		}
 		else if (isdigit(current))
 		{
-			lexer_make_numbers(self, &ls, *len);
-			(*len)++;
+			lei_lexer_make_numbers(self, &ls);
 		}
 		else if (isalpha(current))
 		{
-			lexer_make_keywords(self, &ls, *len);
-			(*len)++;
+			lei_lexer_make_keywords(self, &ls);
 		}
 		else if (ispunct(current))
 		{
 			if (current == '"')
 			{	
-				lexer_make_quotes(self, &ls, *len);
-				(*len)++;
+				lei_lexer_make_quotes(self, &ls);
 			}
 			else if (current == ':' && self->file[self->index + 1] == '=')
 			{	
@@ -80,7 +83,6 @@ list_t* lexer_make_tokens(lexer_t* self, size_t* len)
 				c[2] = 0;
 
 				self->index++;
-				(*len)++;
 			}
 			else if (current == ';')
 			{
@@ -106,7 +108,6 @@ list_t* lexer_make_tokens(lexer_t* self, size_t* len)
 				c[1] = 0;
 
 				pushbacklist(&ls, c);
-				(*len)++;
 			}
 		}
 	}
@@ -115,7 +116,7 @@ list_t* lexer_make_tokens(lexer_t* self, size_t* len)
 }
 
 
-void lexer_make_quotes(lexer_t* self, list_t** tokens, size_t len) 
+LEI_API void lei_lexer_make_quotes(lexer_t* self, list_t** tokens) 
 {
 	char current;
 
@@ -133,7 +134,7 @@ void lexer_make_quotes(lexer_t* self, list_t** tokens, size_t len)
 	pushbacklist(tokens, (void*)quotes);
 }
 
-void lexer_make_keywords(lexer_t* self, list_t** tokens, size_t len) 
+LEI_API void lei_lexer_make_keywords(lexer_t* self, list_t** tokens) 
 {
 	char current;
 
@@ -162,7 +163,7 @@ void lexer_make_keywords(lexer_t* self, list_t** tokens, size_t len)
 	pushbacklist(tokens, (void*)keyword);
 }
 
-void lexer_make_numbers(lexer_t* self, list_t** tokens, size_t len) 
+LEI_API void lei_lexer_make_numbers(lexer_t* self, list_t** tokens) 
 {
 	char current;
 

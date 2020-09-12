@@ -1,21 +1,22 @@
 /* include */
 #include "translater.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <malloc.h>
-#include <assert.h>
-#include <stdbool.h>
+#include <stdio.h>      // input and output, stream
+#include <string.h>     // string handeling 
+#include <malloc.h>     // memory allocation
+#include <assert.h>     
+#include <stdbool.h>    // boolean variables
 
-#include <dirent.h>
-#include <pthread.h>
+#include <dirent.h>     // analazing directories
+#include <pthread.h>    // threads
 
 #include "lexer.h"
+#include "../gen/statement.h"
 
 #define ERROR_NOT_LEI_EXTENSION     "leiva build: invalid extension at given file '%s'. Should use '.lei' extension.\n"
 #define WARNING_DUPLICATED_FILE     "leiva warning: skipping duplicated file: %s.\n"
 
-void translater_create(translater_t* self, const char** args, int len)
+LEI_API void lei_translater_create(translater_t* self, const char** args, int len)
 {
     self->args = args;
     self->argc = len;
@@ -81,7 +82,7 @@ void translater_create(translater_t* self, const char** args, int len)
     self->filenames = (char**)realloc(self->filenames, sizeof(char*) * self->filenames_len);
 }
 
-void translater_build(translater_t* self)
+LEI_API void lei_translater_build(translater_t* self)
 {
     DIR* dir = opendir(".");
     assert(dir);
@@ -90,7 +91,7 @@ void translater_build(translater_t* self)
 
     /* leiva file from the directorie */
     char** filenames = NULL;
-
+    
     pthread_t* threads = NULL;
     int len = 0, out_len = 0;
     bool empty = true;
@@ -104,7 +105,7 @@ void translater_build(translater_t* self)
 
         if (!strcmp(filename, ".") || !strcmp(filename, ".."))
             continue;
-
+        
         if (slen >= 4 && filename[slen - 4] == '.' && filename[slen - 3] == 'l' && filename[slen - 2] == 'e' && filename[slen - 1] == 'i')
         {
             len++;
@@ -124,7 +125,7 @@ void translater_build(translater_t* self)
 
             filenames[len - 1] = (char*)malloc(sizeof(char) * (strlen(filename) + 1));
             strcpy(filenames[len - 1], filename);
-            pthread_create(&threads[len - 1], NULL, translate_thread, filenames[len - 1]);
+            pthread_create(&threads[len - 1], NULL, lei_translate_thread, filenames[len - 1]);
         }
         out_len += slen;
     }
@@ -151,22 +152,20 @@ void translater_build(translater_t* self)
         pthread_join(threads[i], NULL);
 }
 
-void* translate_thread(void* arg)
+LEI_API void* lei_translate_thread(void* arg)
 {
     lexer_t lex;
-    lexer_create(&lex, (char*)arg);
+    lei_lexer_create(&lex, (char*)arg);
 
-    size_t len;
-    list_t* toks = lexer_make_tokens(&lex, &len);
-    assert(toks);
-
-    struct elem* e = toks->root;
-    while (e != NULL) 
-    {   
-        //get_statement(&e);
-        puts(e->value);
-        e = e->next;
+    list_t* toks = lei_lexer_make_tokens(&lex);
+    if (toks == NULL) 
+    {
+        fprintf(stderr, "leiva error: file could not be tokenized correctly.\n");
+        exit(1);
     }
+    
+    struct elem* e = toks->root;
+    lei_get_statement(&e);
 
     rmlist(&toks);
     return NULL;

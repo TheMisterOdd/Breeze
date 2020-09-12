@@ -81,6 +81,7 @@ void pushbacklist(list_t** self, void* value)
 	}
 	(*e)->value = value;
 	(*e)->next = NULL;
+	(*self)->len++;
 }
 
 struct elem* popatlist(list_t** self, size_t n) 
