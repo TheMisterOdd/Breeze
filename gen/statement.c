@@ -6,8 +6,27 @@
 
 #define MATCH(x, y) ((!strcmp((char*)x, (char*)y)))
 
+LEI_API const char* lei_get_statement(struct elem** root) 
+{   
+    struct elem* e = *root;
+    while (e != NULL) 
+    {      
+        if (MATCH(e->value, "import")) 
+        {
+            get_import(e);
+        }
+        else if (MATCH(e->value, "fn")) 
+        {
+            get_function(e);
+        }
+        e = e->next;
+    }
+
+    return NULL;
+}
+
 // gets the series of imports
-static void get_import(struct elem* e) 
+LEI_API void lei_get_import(struct elem* e) 
 {   
     if (MATCH(e->next->value, "(")) 
     {   
@@ -35,7 +54,7 @@ static void get_import(struct elem* e)
     }
 }
 
-static void get_function(struct elem* e) 
+LEI_API void lei_get_function(struct elem* e) 
 {
     char* name = (char*)e->next->value;
     printf("fn %s(", name);
@@ -52,23 +71,4 @@ static void get_function(struct elem* e)
         e = e->next;
     }
     printf(")\n");
-}
-
-LEI_API const char* lei_get_statement(struct elem** root) 
-{   
-    struct elem* e = *root;
-    while (e != NULL) 
-    {      
-        if (MATCH(e->value, "import")) 
-        {
-            get_import(e);
-        }
-        else if (MATCH(e->value, "fn")) 
-        {
-            get_function(e);
-        }
-        e = e->next;
-    }
-
-    return NULL;
 }
