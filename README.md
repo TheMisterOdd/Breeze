@@ -3,7 +3,7 @@
 There are not actual releases, since this language is a prototype. 
 
 ## How Breeze works
-Breeze is written primary in C++ and the Breeze's source code is translated into C and compiled with [g++](https://github.com/g++-mirror/g++) (might port to LLVM in the future). This gives Breeze a powerful typed and the speed and the low-level of C.
+Breeze is written primary in C++ and the Breeze's source code is translated into C and compiled with [g++](https://github.com/gcc-mirror/gcc) (might port to LLVM in the future). This gives Breeze a powerful typed and the speed and the low-level of C.
 
 Breeze is strongly influenced by Go and C (but mostly Go). But you'll ask... If is based in Go, why you don't use Go instead?
 
