@@ -44,7 +44,7 @@ breeze c <args> -o [executable_name]
 ```
 package main
 
-proc main()
+fun main()
   println("Hello World!!!")
 end
 ```
@@ -55,7 +55,7 @@ Hello World!!!
 ```
 package main
 
-proc main()
+fun main()
   x := 1279
   str := "Value of x is $x"
     
@@ -67,15 +67,15 @@ Value of x is 1279
 ```
 #### Fibbonacci numbers:
 ```
-proc fib(n u64) u64 
+fun fib(n uint64) uint64 
   if n <= 1
     return n
   end
   return fib(n - 1) + fib(n - 2)
-ens
+end
   
 
-proc main()
+fun main()
   for i := 0; i < 10; i++
     print(fib(i), "")
   end
@@ -88,16 +88,16 @@ end
 
 #### Double return:
 ```
-proc swap(a, b &Any)
+fun swap(a, b &Any)
   a, b = b, a
 end
   
 
-proc pair() ([]i32, string)
+fun pair() ([]i32, string)
   return []i32{}, "Here I return an array to you."
 end
 
-proc main()
+fun main()
   a, b := 10, 6
 
   println(a, b) // Before
@@ -125,7 +125,7 @@ OwnArray struct
   data []any // variables with a lowercase starting letter, will be hidden
 end
 
-proc (a OwnArray) String() string
+fun (a OwnArray) String() string
   return string(a.data)
 end
 
@@ -135,7 +135,7 @@ package main
 
 import "array"
 
-proc main()
+fun main()
   
   a := array.OwnArray {[]i32 {1, 2, 3}}
   b := []i32{1, 2, 3}
@@ -154,7 +154,7 @@ end
 ```
 package main
 
-proc fib(n u64, c chan u64)
+fun fib(n u64, c chan u64)
   x, y := 0, 1
   for i := 0; i < n; i++
     c <- x
@@ -163,7 +163,7 @@ proc fib(n u64, c chan u64)
   close(c)
 end
 
-proc main()
+fun main()
   c := make(chan u64, 16)
   rout := run fib(16, c)
 
