@@ -236,7 +236,7 @@ std::string Tokenizer::ReadFile(std::string filename)
 	FILE* f = fopen(filename.c_str(), "rb"); /* was "rb" */
 	if (f == NULL)
 	{
-		fprintf(stderr, "[Error]: Cannot allocate memory for new file.\n");
+		fprintf(stderr, "breeze error: cannot read given file %s.\n", filename.c_str());
 		exit(-1);
 	}
 
