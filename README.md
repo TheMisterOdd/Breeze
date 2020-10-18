@@ -38,7 +38,7 @@ Breeze
 ```
 breeze c <args> -o [executable_name]
 ```
-**NOTE**: the `build` argument, gets all the `.lei` files at the directory, for compiling them.
+**NOTE**: the `build` argument, gets all the `.bz` files at the directory, for compiling them.
 ## Examples
 #### Hello World:
 ```
