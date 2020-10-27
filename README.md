@@ -154,7 +154,7 @@ end
 ```
 package main
 
-fun fib(n u64, c chan u64)
+fun fib(n uint64, c pipe uint64)
   x, y := 0, 1
   for i := 0; i < n; i++
     c <- x
@@ -164,7 +164,7 @@ fun fib(n u64, c chan u64)
 end
 
 fun main()
-  c := make(chan u64, 16)
+  c := make(pipe uint64, 16)
   rout := run fib(16, c)
 
   for n := range c
