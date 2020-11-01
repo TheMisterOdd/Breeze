@@ -92,7 +92,7 @@ crate main
 
 import "io"
 
-fn fib(n u64, p pie u64) {
+fn fib(n u64, p pipe u64) {
   x, y := 0, 1
   for i := 0; i < n; i++ {
     c <- x
