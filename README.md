@@ -65,7 +65,7 @@ fn fib(n u64, p pie u64) {
 }
 
 fun main()
-  mut c pipe u64  = make(pipe u64, 16)
+  c := make(pipe u64, 16)
   rout := coroutine fib(16, c)
 
   for n := range c {
