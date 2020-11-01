@@ -79,13 +79,14 @@ fn (map Map<K, V>) Insert(key K, value V) error {
 fn (map Map<K, V>) String() string { // Implicit operator
   str := "map"
   for i := 0; i < len(map.keys); i++ {
-    io.Sprintf(str, "[%v, %v]", map.keys[i], map.values[i])
+    io.Sprintf(str, "{%v, %v}", map.keys[i], map.values[i])
   }
 }
 
 fn main() {
-  map := NewMap<string, int>()
-  map.Insert("triangle", 3)
+  vertices1 := NewMap<string, i32>()
+  vertices1.Insert("Triangle", 3)
+  vertices1.Insert("Square", 4)
   io.Printf("%v\n", map)
 }
 
