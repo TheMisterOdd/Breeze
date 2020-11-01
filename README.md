@@ -69,7 +69,7 @@ fun main()
   rout := coroutine fib(16, c)
 
   for n := range c {
-    io.Printf("%d\n", <- c);
+    io.Printf("%d\n", <- c)
   }
   end
   join(rout) // join the routine
