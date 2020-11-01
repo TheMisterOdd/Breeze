@@ -101,7 +101,7 @@ fn fib(n u64, p pipe u64) {
   close(p) // removes memory from channel and set it to 'nil'
 }
 
-fun main() {
+fn main() {
   c := make(pipe u64, 16)
   rout := coroutine fib(16, c)
 
