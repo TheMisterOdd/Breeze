@@ -40,6 +40,7 @@ breeze c <args> -o [executable_name]
 ```
 **NOTE**: the `build` argument, gets all the `.bz` files at the directory, for compiling them.
 ## Examples
+#### Hello World:
 ```
 crate main
 
