@@ -40,135 +40,37 @@ breeze c <args> -o [executable_name]
 ```
 **NOTE**: the `build` argument, gets all the `.bz` files at the directory, for compiling them.
 ## Examples
-#### Hello World:
 ```
-package main
+crate main
 
-fun main()
-  println("Hello World!!!")
-end
-```
-```
-Hello World!!!
-```
-#### String Format:
-```
-package main
+import "io"
 
-fun main()
-  x := 1279
-  str := "Value of x is $x"
-    
-  println("{}", str)
-end
-```
-```
-Value of x is 1279
-```
-#### Fibbonacci numbers:
-```
-fun fib(n uint64) uint64 
-  if n <= 1
-    return n
-  end
-  return fib(n - 1) + fib(n - 2)
-end
-  
-
-fun main()
-  for i := 0; i < 10; i++
-    print(fib(i), "")
-  end
-end
-
-```
-```
-0 1 1 2 3 5 8 13 21 34
-```
-
-#### Double return:
-```
-fun swap(a, b &Any)
-  a, b = b, a
-end
-  
-
-fun pair() ([]i32, string)
-  return []i32{}, "Here I return an array to you."
-end
-
-fun main()
-  a, b := 10, 6
-
-  println(a, b) // Before
-  swap(a, b)
-  println(a, b, "\n") // After
-
-  arr, str := pair()
-  println(arr)
-  println(str)
-end
-```
-```
-10 6
-6 10
-
-[]
-Here I return an array to you.
-```
-
-#### Object Oriented:
-```
--- array.lei --
-package array
-OwnArray struct
-  data []any // variables with a lowercase starting letter, will be hidden
-end
-
-fun (a OwnArray) String() string
-  return string(a.data)
-end
-
-
--- main.lei --
-package main
-
-import "array"
-
-fun main()
-  
-  a := array.OwnArray {[]i32 {1, 2, 3}}
-  b := []i32{1, 2, 3}
-  
-  println(a)
-  println(b)
-  
-end
-  
-```
-```
-[1, 2, 3] 
-[1, 2, 3]
+fn main(args []string) {
+  io.Printf("Hello, World!!!")
+}
 ```
 #### Coroutines:
 ```
-package main
+crate main
 
-fun fib(n uint64, c pipe uint64)
+import "io"
+
+fn fib(n u64, p pie u64) {
   x, y := 0, 1
-  for i := 0; i < n; i++
+  for i := 0; i < n; i++ {
     c <- x
-    x, y = y, x + y
-  end
-  close(c)
-end
+    x, y  = y, x + y
+  }
+  close(p) // removes memory from channel and set it to 'nil'
+}
 
 fun main()
-  c := make(pipe uint64, 16)
-  rout := run fib(16, c)
+  mut c pipe u64  = make(pipe u64, 16)
+  rout := coroutine fib(16, c)
 
-  for n := range c
-    println(<- c)
+  for n := range c {
+    io.Printf("%d\n", <- c);
+  }
   end
   join(rout) // join the routine
 end
