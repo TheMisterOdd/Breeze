@@ -50,6 +50,47 @@ fn main(args []string) {
   io.Printf("Hello, World!!!")
 }
 ```
+#### Structs:
+```
+crate main
+
+import "io"
+
+Map<K, V> struct {
+  keys []K
+  values []V
+}
+
+fn NewMap<K, V>() Map<K, V> {
+  return Map<K, V>{}
+}
+
+fn (map Map<K, V>) Insert(key K, value V) error {
+  map.keys, err := append(map.keys, key)
+  if err != nil {
+    map.values, err := append(map.values, value)
+    return err
+  }
+  else {
+    return err
+  }
+}
+
+fn (map Map<K, V>) String() string { // Implicit operator
+  str := "map"
+  for i := 0; i < len(map.keys); i++ {
+    io.Sprintf(str, "[%v, %v]", map.keys[i], map.values[i])
+  }
+}
+
+fn main() {
+  map := NewMap<string, int>()
+  map.Insert("triangle", 3)
+  io.Printf("%v\n", map)
+}
+
+
+```
 #### Coroutines:
 ```
 crate main
@@ -65,16 +106,15 @@ fn fib(n u64, p pie u64) {
   close(p) // removes memory from channel and set it to 'nil'
 }
 
-fun main()
+fun main() {
   c := make(pipe u64, 16)
   rout := coroutine fib(16, c)
 
   for n := range c {
     io.Printf("%d\n", <- c)
   }
-  end
   join(rout) // join the routine
-end
+}
 ```
 ## Leiva by examples:
 | Nº            | Tutorial      | Complexity      |
