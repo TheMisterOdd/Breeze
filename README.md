@@ -117,6 +117,16 @@ fun main() {
   join(rout) // join the routine
 }
 ```
+#### Memory management:
+```
+crate main
+
+fn main() {
+  arr := make([]int, 8) // makes an array of 8 positions
+  println(arr)
+  delete(arr) // must delete, not automatic memory deallocation.
+}
+```
 ## Leiva by examples:
 | Nº            | Tutorial      | Complexity      |
 | ------------- |:-------------:|:---------------:|
