@@ -67,9 +67,9 @@ fn (map Map<K, V>) Insert(key K, value V) error {
 }
 
 fn (map Map<K, V>) String() string { // Implicit operator
-  str := "map"
+  str := "map="
   for i := 0; i < len(map.keys); i++ {
-    str += f"\t[{maps.keys[i]}, {maps.values[i]}]"
+    str += f"[{maps.keys[i]}, {maps.values[i]}]\n" 
   }
 }
 
@@ -100,7 +100,7 @@ fn main() {
   rout := coroutine fib(16, c)
 
   for n := range c {
-    println("{}", <- c)
+    println(<- c)
   }
   join(rout) // join the routine
 }
