@@ -44,17 +44,13 @@ breeze c <args> -o [executable_name]
 ```
 crate main
 
-import "io"
-
 fn main(args []string) {
-  io.Printf("Hello, World!!!")
+  println("Hello, World!!!")
 }
 ```
 #### Structs:
 ```
 crate main
-
-import "io"
 
 Map<K, V> struct {
   keys []K
@@ -73,7 +69,7 @@ fn (map Map<K, V>) Insert(key K, value V) error {
 fn (map Map<K, V>) String() string { // Implicit operator
   str := "map"
   for i := 0; i < len(map.keys); i++ {
-    io.Sprintf(str, "{%v, %v}", map.keys[i], map.values[i])
+    str += f"\t[{maps.keys[i]}, {maps.values[i]}]"
   }
 }
 
@@ -90,8 +86,6 @@ fn main() {
 ```
 crate main
 
-import "io"
-
 fn fib(n u64, p pipe u64) {
   x, y := 0, 1
   for i := 0; i < n; i++ {
@@ -106,7 +100,7 @@ fn main() {
   rout := coroutine fib(16, c)
 
   for n := range c {
-    io.Printf("%d\n", <- c)
+    println("{}", <- c)
   }
   join(rout) // join the routine
 }
