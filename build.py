@@ -1,3 +1,4 @@
+# Must use Python 3
 import os
 
 CompilerName   = 'g++'
@@ -26,12 +27,14 @@ rflags = [
 	'-Wextra',
 	'-O2',
 	'-s',
+	'-lpthread',
 ]
 
 dflags = [
 	'-Wall',
 	'-Wextra',
 	'-g',
+	'-lpthread',
 ]
 
 # The string is going to be executed
