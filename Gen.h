@@ -1,14 +1,25 @@
 #pragma once
 
 #include "Tokenizer.h"
-#include <unordered_map>
+#include <map>
 
 typedef struct {
 	std::string name;
-	std::unordered_map<std::string, std::string> args;
+	std::string type;
+} Argument;
+
+typedef struct {
+	std::string name;
+	std::list<Argument> args;
 	std::list<std::string> returns_types;
 	std::string body;
 } Function;
+
+typedef struct {
+	std::string name;
+	std::string value;
+	std::string type;
+} Constants;
 
 class Gen
 {
@@ -35,10 +46,10 @@ private:
 	/* all the files imports */
 	std::list<std::string> m_Imports;
 
-	/* map<Constant Name, Value of the constant> */
-	std::unordered_map<std::string, std::string> m_Const;
+	/* list of the constants in a file */
+	std::list<Constants> m_Const;
 
-	/* */
+	/* list of functions in th file */
 	std::list<Function> m_Functions;
 	
 };

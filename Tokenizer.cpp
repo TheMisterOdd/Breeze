@@ -52,9 +52,6 @@ std::list<std::string> Tokenizer::GetTokenData(std::string data)
 	for (size_t i = 0; i < data.size(); i++) {
 		const char c = data.at(i);
 		if (isblank(c) || iscntrl(c)) {
-			if (c == '\n')
-				ls.push_back("\\n");
-
 			continue;
 		}
 		else if (c == '"') {

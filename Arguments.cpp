@@ -32,10 +32,18 @@ int Arguments::Analize(std::list<std::string> args)
 			{
 				std::cout << "breeze compile: not files or aguments listed." << std::endl;
 			}
+			break;
 		}
 		else if (*it == "r")
 		{
 			//std::cout << "wanna compile & run" << std::endl;
+		}
+		else if (*it == "help")
+		{
+			std::cout << "help test." << std::endl;
+		}
+		else {
+			std::cerr << "breeze '" << *it << "': unknown argument." << std::endl;
 		}
 	}
 
