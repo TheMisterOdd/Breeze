@@ -109,8 +109,10 @@ fn main() {
 ```
 crate main
 
+import "mem"
+
 fn main() {
-  arr := make([]int, 8) // makes an array of 8 positions
+  arr := make([]u32, 10)
   println(arr)
   delete(arr) // must delete, not automatic memory deallocation.
 }
