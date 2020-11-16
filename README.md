@@ -109,8 +109,6 @@ fn main() {
 ```
 crate main
 
-import "mem"
-
 fn main() {
   arr := make([]u32, 10)
   println(arr)
