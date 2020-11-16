@@ -62,8 +62,9 @@ fn NewMap<K, V>() Map<K, V> {
 }
 
 fn (map Map<K, V>) Insert(key K, value V) error {
-  map.keys, err := append(map.keys, key)
-  map.values, err := append(map.values, value)
+  err error
+  map.keys, err = append(map.keys, key)
+  map.values, err = append(map.values, value)
 }
 
 fn (map Map<K, V>) String() string { // Implicit operator
