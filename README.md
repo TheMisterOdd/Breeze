@@ -65,6 +65,7 @@ func (map Map<K, V>) Insert(key K, value V) error {
   err error
   map.keys, err = append(map.keys, key)
   map.values, err = append(map.values, value)
+  return err
 }
 
 func (map Map<K, V>) String() string { // Implicit operator
@@ -72,6 +73,7 @@ func (map Map<K, V>) String() string { // Implicit operator
   for i := 0; i < len(map.keys); i++ {
     str += f"[{maps.keys[i]}, {maps.values[i]}]\n" 
   }
+  return str
 }
 
 func main() {
