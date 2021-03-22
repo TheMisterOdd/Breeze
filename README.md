@@ -16,7 +16,7 @@ Breeze is strongly influenced by Go and C (but mostly Go). But you'll ask... If 
 
 * C is embedded into the language. You could simple call a C function or the C preprocesor with an '@': `@#include <math.h>` or `@sin(M_PI / 2.0)`
 
-* Inlining. Don't need to call a function if you copy it's code into the source code, directly, whenever is called. This saves, time by avoiding function call overhead. Functions defined like this: `fn Sin(x f64) f64 = @sin(math.Deg(x))` will be inlined
+* Inlining. Don't need to call a function if you copy it's code into the source code, directly, whenever is called. This saves, time by avoiding function call overhead. Functions defined like this: `func Sin(x float64) float64 = @sin(math.Deg(x))` will be inlined
 
 * Built-In basic `print` and `println`. Also supports format by using `string` formatting.
 
