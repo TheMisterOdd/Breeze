@@ -42,40 +42,40 @@ breeze c <args> -o [executable_name]
 ## Examples
 #### Hello World:
 ```
-crate main
+package main
 
-fn main(args []string) {
+func main(args []string) {
   println("Hello, World!!!")
 }
 ```
 #### Structs:
 ```
-crate main
+package main
 
 Map<K, V> struct {
   keys []K
   values []V
 }
 
-fn NewMap<K, V>() Map<K, V> {
+func NewMap<K, V>() Map<K, V> {
   return Map<K, V>{}
 }
 
-fn (map Map<K, V>) Insert(key K, value V) error {
+func (map Map<K, V>) Insert(key K, value V) error {
   err error
   map.keys, err = append(map.keys, key)
   map.values, err = append(map.values, value)
 }
 
-fn (map Map<K, V>) String() string { // Implicit operator
+func (map Map<K, V>) String() string { // Implicit operator
   str := "map="
   for i := 0; i < len(map.keys); i++ {
     str += f"[{maps.keys[i]}, {maps.values[i]}]\n" 
   }
 }
 
-fn main() {
-  vertices1 := NewMap<string, i32>()
+func main() {
+  vertices1 := NewMap<string, int32>()
   vertices1.Insert("Triangle", 3)
   vertices1.Insert("Square", 4)
   io.Printf("%v\n", map)
@@ -85,9 +85,9 @@ fn main() {
 ```
 #### Coroutines:
 ```
-crate main
+package main
 
-fn fib(n u64, p pipe u64) {
+func fib(n uint64, p pipe uint64) {
   x, y := 0, 1
   for i := 0; i < n; i++ {
     c <- x
@@ -96,8 +96,8 @@ fn fib(n u64, p pipe u64) {
   close(p) // removes memory from channel and set it to 'nil'
 }
 
-fn main() {
-  c := make(pipe u64, 16)
+func main() {
+  c := make(pipe uint64, 16)
   rout := coroutine fib(16, c)
 
   for n := range c {
@@ -108,10 +108,10 @@ fn main() {
 ```
 #### Memory management:
 ```
-crate main
+package main
 
-fn main() {
-  arr := make([]u32, 10)
+func main() {
+  arr := make([]uint32, 10)
   println(arr)
   delete(arr) // must delete, not automatic memory deallocation.
 }
